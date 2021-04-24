@@ -8,6 +8,7 @@ public class LevelGenerator : MonoBehaviour
 {
     public LayerDefinition[] layers;
     public GameObject chunkPrefab;
+    public TileDefinition backgroundTile;
     
     public int chunkSize = 60;
     public Player player;
@@ -97,6 +98,31 @@ public class LevelGenerator : MonoBehaviour
         return _chunks.ContainsKey(chunkX + "_" + chunkY)
             ? _chunks[chunkX + "_" + chunkY].Tiles[withinX, withinY]
             : null;
+    }
+
+    public int DestroyTile(int x, int y)
+    {
+        var tile = GetTileAt(x, y);
+        if (!tile || tile.isBackground)
+        {
+            return 0;
+        }
+        
+        var chunkX = GetChunkByCoordinate(x);
+        var chunkY = GetChunkByCoordinate(y);
+
+        var withinX = x - (chunkX * chunkSize);
+        var withinY = y - (chunkY * chunkSize);
+
+        if (!_chunks.ContainsKey($"{chunkX}_{chunkY}"))
+        {
+            return 0;
+        }
+
+        _chunks[chunkX + "_" + chunkY].Tiles[withinX, withinY] = backgroundTile;
+        _chunks[chunkX + "_" + chunkY].GenerateMesh();
+
+        return 0;
     }
 
     private float GetNoise(float x, float y, float scale)

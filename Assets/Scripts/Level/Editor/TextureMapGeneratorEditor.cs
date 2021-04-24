@@ -14,15 +14,15 @@ namespace Level.Editor
             if (GUILayout.Button("Generate texture map"))
             {
                 ((TextureMapGenerator)target).Generate();
-            }
-
-            foreach (var tile in ((TextureMapGenerator) target).tiles)
-            {
-                EditorUtility.SetDirty(tile);
-            }
+                
+                foreach (var tile in ((TextureMapGenerator) target).tiles)
+                {
+                    EditorUtility.SetDirty(tile);
+                }
             
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
+                AssetDatabase.SaveAssets();
+                AssetDatabase.Refresh();
+            }
         }
     }
 }

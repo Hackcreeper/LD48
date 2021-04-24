@@ -7,6 +7,7 @@ namespace Level
     {
         public Texture2D texture;
         public bool isOre = true;
+        public bool isBackground = false;
 
         public float mapX;
         public float mapY;
