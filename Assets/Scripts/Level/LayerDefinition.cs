@@ -18,7 +18,16 @@ namespace Level
 
         public TileDefinition GetRandomBaseTile()
         {
-            return baseTiles[0].tile;
+            var possibilities = new List<TileDefinition>();
+            foreach (var layerTile in baseTiles)
+            {
+                for (var i = 0; i < layerTile.chance; i++)
+                {
+                    possibilities.Add(layerTile.tile);
+                }
+            }
+            
+            return possibilities[Random.Range(0, possibilities.Count)];
         }
 
         public TileDefinition GetRandomOreTile(LevelGenerator level, int x, int y)

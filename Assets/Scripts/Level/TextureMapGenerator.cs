@@ -11,7 +11,7 @@ namespace Level
         public void Generate()
         {
             var texture = new Texture2D(tiles.Length * 64, 64);
-            var uvCoords = texture.PackTextures(tiles.Select(tile => tile.texture).ToArray(), 0);
+            var uvCoords = texture.PackTextures(tiles.Select(tile => tile.texture).ToArray(), 16);
             texture.Apply();
 
             File.WriteAllBytes(

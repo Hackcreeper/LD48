@@ -34,7 +34,7 @@ namespace Level
                 for (var ty = 0; ty < chunkSize; ty++)
                 {
                     var tile = Tiles[tx, ty];
-                    
+
                     vertices.Add(new Vector3(tx, ty, 0));
                     vertices.Add(new Vector3(tx + 1, ty, 0));
                     vertices.Add(new Vector3(tx + 1, ty - 1, 0));
@@ -51,7 +51,7 @@ namespace Level
                     uvs.Add(new Vector2(tile.mapX + tile.mapWidth, tile.mapY));
                     uvs.Add(new Vector2(tile.mapX + tile.mapWidth, tile.mapY + tile.mapHeight));
                     uvs.Add(new Vector2(tile.mapX, tile.mapY + tile.mapHeight));
-     
+
                     squares++;
                 }
             }

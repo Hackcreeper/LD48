@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a8a28ed53d14cb49c698fe0ac9de112, type: 3}
-  m_Name: Ruby
+  m_Name: Dirt4
   m_EditorClassIdentifier: 
-  texture: {fileID: 2800000, guid: 9c3d09ccd032b41218141be3c2e2034d, type: 3}
-  isOre: 1
+  texture: {fileID: 2800000, guid: ba098bb7902964c108677f5fb4dd4d85, type: 3}
+  isOre: 0
   isBackground: 0
-  mapX: 0.3125
-  mapY: 0
+  mapX: 0
+  mapY: 0.3125
   mapWidth: 0.25
   mapHeight: 0.125

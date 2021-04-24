@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(0, -speed * Time.deltaTime, 0);
+        transform.Translate(-speed * Time.deltaTime, -speed * Time.deltaTime, 0);
 
         Drill(2, 0, 3);
         Drill(1, 3, 5);

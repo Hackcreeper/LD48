@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a8a28ed53d14cb49c698fe0ac9de112, type: 3}
-  m_Name: Dirt
+  m_Name: Dirt1
   m_EditorClassIdentifier: 
-  texture: {fileID: 2800000, guid: f5f00411968c5423aab199eb59e22a83, type: 3}
+  texture: {fileID: 2800000, guid: a78fff5ad504f4663a29c4897d2cb02a, type: 3}
   isOre: 0
-  mapX: 0.5
-  mapY: 0
-  mapWidth: 0.5
-  mapHeight: 0.5
+  isBackground: 0
+  mapX: 0
+  mapY: 0.15625
+  mapWidth: 0.25
+  mapHeight: 0.125
