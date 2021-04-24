@@ -6,6 +6,6 @@ namespace Level
     public class TileDefinition : ScriptableObject
     {
         public GameObject tilePrefab;
-        public int chance;
+        public bool isOre = true;
     }
 }

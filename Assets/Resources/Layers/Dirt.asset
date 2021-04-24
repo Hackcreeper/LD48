@@ -12,3 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93a768b1ef5fc466fbc049c4146a6970, type: 3}
   m_Name: Dirt
   m_EditorClassIdentifier: 
+  baseTiles:
+  - tile: {fileID: 11400000, guid: a791609c6508d4fc2aebcac0f5aef6c4, type: 2}
+    chance: 100
+  oreTiles:
+  - tile: {fileID: 11400000, guid: 8ad63e5edfd4f42c7a6bf60e48f4ae32, type: 2}
+    chance: 50
+  - tile: {fileID: 11400000, guid: 5ef345c75b094448a8454b0d3475cfc8, type: 2}
+    chance: 10
+  startY: 0
+  oreThreshold: 0.7
+  mixChance: 0
