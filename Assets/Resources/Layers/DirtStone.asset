@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 93a768b1ef5fc466fbc049c4146a6970, type: 3}
-  m_Name: Dirt
+  m_Name: DirtStone
   m_EditorClassIdentifier: 
   baseTiles:
   - tile: {fileID: 11400000, guid: 8451d355da1c0492ba7e27f7e69460ae, type: 2}
@@ -27,12 +27,18 @@ MonoBehaviour:
     chance: 10
   - tile: {fileID: 11400000, guid: a791609c6508d4fc2aebcac0f5aef6c4, type: 2}
     chance: 10
+  - tile: {fileID: 11400000, guid: 8201f48adef5e4dd8919788bdcdee055, type: 2}
+    chance: 150
+  - tile: {fileID: 11400000, guid: b01b3dfade230496db85ce58a86eae2d, type: 2}
+    chance: 30
+  - tile: {fileID: 11400000, guid: 3b97ab54d32f54b02baf862d9d851b20, type: 2}
+    chance: 30
   oreTiles:
   - tile: {fileID: 11400000, guid: 8ad63e5edfd4f42c7a6bf60e48f4ae32, type: 2}
     chance: 50
   - tile: {fileID: 11400000, guid: 5ef345c75b094448a8454b0d3475cfc8, type: 2}
-    chance: 10
-  startY: 0
-  noiseScale: 20
-  oreThreshold: 0.7
+    chance: 20
+  startY: 5
+  noiseScale: 10
+  oreThreshold: 0.78
   mixChance: 0

@@ -135,7 +135,16 @@ public class LevelGenerator : MonoBehaviour
 
     private LayerDefinition GetLayerByY(int y)
     {
-        // TODO: Implement
-        return layers[0];
+        var chosen = layers[0];
+        
+        foreach (var layer in layers)
+        {
+            if (layer.startY <= -y)
+            {
+                chosen = layer;
+            }
+        }
+
+        return chosen;
     }
 }
