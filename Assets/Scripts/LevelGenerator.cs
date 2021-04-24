@@ -50,6 +50,8 @@ public class LevelGenerator : MonoBehaviour
         {
             return;
         }
+        
+        var layer = GetLayerByY(chunkY);
 
         var chunk = Instantiate(
             chunkPrefab,
@@ -59,12 +61,10 @@ public class LevelGenerator : MonoBehaviour
         chunk.name = $"Chunk_{chunkX}_{chunkY}";
 
         var chunkComponent = chunk.GetComponent<Chunk>();
-        chunkComponent.Initialize(chunkSize, chunkX, chunkY);
+        chunkComponent.Initialize(chunkSize, chunkX, chunkY, layer);
 
         _chunks.Add(chunkX + "_" + chunkY, chunkComponent);
         
-        var layer = GetLayerByY(chunkY);
-
         for (var x = 0; x < chunkSize; x++)
         {
             for (var y = 0; y < chunkSize; y++)

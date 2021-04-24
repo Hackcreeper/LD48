@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8a28ed53d14cb49c698fe0ac9de112, type: 3}
   m_Name: Coal
   m_EditorClassIdentifier: 
-  texture: {fileID: 2800000, guid: f3dd99fcdd5b64799bb1677d44cad877, type: 3}
+  texture: {fileID: 2800000, guid: fad8353f0b65641ddbf229bd51e65815, type: 3}
   isOre: 1
   isBackground: 0
   mapX: 0
