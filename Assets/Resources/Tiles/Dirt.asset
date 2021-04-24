@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8a28ed53d14cb49c698fe0ac9de112, type: 3}
   m_Name: Dirt
   m_EditorClassIdentifier: 
-  tilePrefab: {fileID: 3319473576619304113, guid: 0db4e7c9b746a4a00a5bd51fabdb2bdb, type: 3}
+  texture: {fileID: 2800000, guid: f5f00411968c5423aab199eb59e22a83, type: 3}
   isOre: 0
+  mapX: 0.5
+  mapY: 0
+  mapWidth: 0.5
+  mapHeight: 0.5

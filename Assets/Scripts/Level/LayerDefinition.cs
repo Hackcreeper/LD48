@@ -48,8 +48,6 @@ namespace Level
             {
                 neighbours.Add(right);
             }
-
-            Debug.Log(neighbours.Count);
             
             if (neighbours.Count == 0 || Random.Range(0f, 1f) < mixChance)
             {

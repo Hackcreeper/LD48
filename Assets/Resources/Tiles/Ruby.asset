@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8a28ed53d14cb49c698fe0ac9de112, type: 3}
   m_Name: Ruby
   m_EditorClassIdentifier: 
-  tilePrefab: {fileID: 3319473576619304113, guid: b5c684fc829784a4dbecd19f0338436b, type: 3}
+  texture: {fileID: 2800000, guid: 9c3d09ccd032b41218141be3c2e2034d, type: 3}
+  isOre: 1
+  mapX: 0
+  mapY: 0.5
+  mapWidth: 0.5
+  mapHeight: 0.5

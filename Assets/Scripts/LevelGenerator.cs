@@ -1,6 +1,5 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Level;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -8,7 +7,10 @@ using Random = UnityEngine.Random;
 public class LevelGenerator : MonoBehaviour
 {
     public LayerDefinition[] layers;
+    public GameObject chunkPrefab;
+    
     public int chunkSize = 60;
+    public Player player;
 
     private float _noiseSeed;
     private readonly Dictionary<string, Chunk> _chunks = new Dictionary<string, Chunk>();
@@ -17,30 +19,46 @@ public class LevelGenerator : MonoBehaviour
     {
         _noiseSeed = Random.Range(-100000.0f, 100000.0f);
     }
-
-    public void Start()
+    
+    private void Update()
     {
-        for (var x = -2; x <= 4; x++)
-        {
-            for (var y = -1; y <= 1; y++)
-            {
-                GenerateChunk(x, y);
-            }
-        }
+        var chunkX = GetChunkByCoordinate(player.transform.position.x);
+        var chunkY = GetChunkByCoordinate(player.transform.position.y);
 
-        // GenerateChunk(-1, 0);
-        // GenerateChunk(0, 0);
-        // GenerateChunk(1, 0);
-        // GenerateChunk(0, 1);
+        var toBeRemoved = new List<string>();
+        foreach (var chunk in _chunks.Where(chunk => chunk.Value.y > chunkY + 1))
+        {
+            Destroy(chunk.Value.gameObject);
+            toBeRemoved.Add(chunk.Key);
+        }
+        
+        toBeRemoved.ForEach(chunk => _chunks.Remove(chunk));
+        
+        GenerateChunk(chunkX, chunkY);
+        GenerateChunk(chunkX-1, chunkY);
+        GenerateChunk(chunkX+1, chunkY);
+        
+        GenerateChunk(chunkX, chunkY-1);
+        GenerateChunk(chunkX-1, chunkY-1);
+        GenerateChunk(chunkX+1, chunkY-1);
     }
 
     private void GenerateChunk(int chunkX, int chunkY)
     {
-        var chunk = new GameObject("Chunk_" + chunkX + "_" + chunkY);
-        chunk.transform.position = new Vector3(chunkX * chunkSize, chunkY * chunkSize);
-        
-        var chunkComponent = chunk.AddComponent<Chunk>();
-        chunkComponent.Initialize(chunkSize);
+        if (_chunks.ContainsKey(chunkX + "_" + chunkY))
+        {
+            return;
+        }
+
+        var chunk = Instantiate(
+            chunkPrefab,
+            new Vector3(chunkX * chunkSize, chunkY * chunkSize),
+            Quaternion.identity
+        );
+        chunk.name = $"Chunk_{chunkX}_{chunkY}";
+
+        var chunkComponent = chunk.GetComponent<Chunk>();
+        chunkComponent.Initialize(chunkSize, chunkX, chunkY);
 
         _chunks.Add(chunkX + "_" + chunkY, chunkComponent);
         
@@ -57,21 +75,21 @@ public class LevelGenerator : MonoBehaviour
                     : layer.GetRandomBaseTile();
 
                 chunkComponent.Tiles[x, y] = tile;
-
-                var instance = Instantiate(
-                    tile.tilePrefab,
-                    chunk.transform
-                );
-
-                instance.transform.localPosition = new Vector3(x, y);
             }
         }
+
+        chunkComponent.GenerateMesh();
     }
 
+    private int GetChunkByCoordinate(float coordinate)
+    {
+        return Mathf.FloorToInt(coordinate / (float) chunkSize);
+    }
+    
     public TileDefinition GetTileAt(int x, int y)
     {
-        var chunkX = Mathf.FloorToInt(x / (float) chunkSize);
-        var chunkY = Mathf.FloorToInt(y / (float) chunkSize);
+        var chunkX = GetChunkByCoordinate(x);
+        var chunkY = GetChunkByCoordinate(y);
 
         var withinX = x - (chunkX * chunkSize);
         var withinY = y - (chunkY * chunkSize);
