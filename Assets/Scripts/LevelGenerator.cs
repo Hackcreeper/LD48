@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Level;
+using Player;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -11,7 +12,7 @@ public class LevelGenerator : MonoBehaviour
     public TileDefinition backgroundTile;
     
     public int chunkSize = 60;
-    public Player player;
+    public Control player;
 
     private float _noiseSeed;
     private readonly Dictionary<string, Chunk> _chunks = new Dictionary<string, Chunk>();
