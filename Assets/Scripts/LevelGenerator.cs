@@ -128,8 +128,8 @@ public class LevelGenerator : MonoBehaviour
         {
             player.RestoreEnergy(tile.restoreEnergy);
         }
-        
-        return 1; // TODO: Replace with real score
+
+        return tile.score;
     }
     
     public LayerDefinition GetLayerByY(int y)

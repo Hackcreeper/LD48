@@ -16,6 +16,7 @@ MonoBehaviour:
   isOre: 1
   isBackground: 0
   restoreEnergy: 5
+  score: 1
   mapX: 0
   mapY: 0
   mapWidth: 0.25

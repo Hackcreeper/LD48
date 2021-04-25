@@ -1,5 +1,9 @@
+using GameJolt.API;
+using GameJolt.UI;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace Player
 {
@@ -13,11 +17,15 @@ namespace Player
         public RectTransform energyBar;
         public float maxHeightEnergyBar;
         public float energyEfficiency = 1;
+        public int score;
+        public TextMeshProUGUI scoreLabel;
+        public TextMeshProUGUI rankLabel;
 
         private float _angle;
         private bool _pressingLeft;
         private bool _pressingRight;
         private float _energy;
+        private bool _dead;
 
         private void Awake()
         {
@@ -26,6 +34,11 @@ namespace Player
 
         private void Update()
         {
+            if (_dead)
+            {
+                return;
+            }
+            
             if (!_pressingLeft && !_pressingRight)
             {
                 _angle = 0;
@@ -55,8 +68,61 @@ namespace Player
                 energyBar.sizeDelta.x,
                 maxHeightEnergyBar / maxEnergy * _energy
             );
+
+            scoreLabel.text = score.ToString();
+
+            if (_energy <= 0)
+            {
+                Die();
+            }
+            
+            if (Application.isEditor && Input.GetKeyDown(KeyCode.K))
+            {
+                Die();
+            }
+            
+            if (Application.isEditor && Input.GetKeyDown(KeyCode.H))
+            {
+                GameJoltUI.Instance.QueueNotification("Muhkuh macht die Muhkuh!");
+            }
+            
+            if (Application.isEditor && Input.GetKeyDown(KeyCode.L))
+            {
+                GameJoltUI.Instance.ShowSignIn();
+            }
+
+            if (score <= 0)
+            {
+                return;
+            }
+            
+            GameJolt.API.Scores.GetRank(score, 618313, (int rank) =>
+            {
+                rankLabel.text = $"Rank {rank}";
+            });
         }
-        
+
+        private void Die()
+        {
+            _dead = true;
+
+            if (GameJoltAPI.Instance.HasSignedInUser)
+            {
+                Scores.Add(score, score.ToString(), 618313, null, (bool success) =>
+                {
+                    GameJoltUI.Instance.ShowLeaderboards(); 
+                });
+                return;
+            }
+
+            var playerName = "Bobby Bauer";
+            
+            Scores.Add(score, score.ToString(), playerName, 618313, null, (bool success) =>
+            {
+                GameJoltUI.Instance.ShowLeaderboards(); 
+            });
+        }
+
         public void MoveLeft(InputAction.CallbackContext context)
         {
             if (context.canceled)

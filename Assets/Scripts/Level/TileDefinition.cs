@@ -9,6 +9,7 @@ namespace Level
         public bool isOre = true;
         public bool isBackground = false;
         public float restoreEnergy;
+        public int score;
 
         public float mapX;
         public float mapY;

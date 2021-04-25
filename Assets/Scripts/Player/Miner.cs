@@ -11,6 +11,7 @@ namespace Player
 
         public GameObject checkParent;
         public LevelGenerator level;
+        public Control player;
 
         private void Update()
         {
@@ -18,7 +19,17 @@ namespace Player
             {
                 var child = checkParent.transform.GetChild(i);
 
-                level.DestroyTile(
+                if (child.localPosition.x < 0)
+                {
+                    player.score += level.DestroyTile(
+                        Mathf.FloorToInt(child.transform.position.x),
+                        Mathf.FloorToInt(child.transform.position.y)
+                    );
+
+                    continue;
+                }
+                
+                player.score += level.DestroyTile(
                     Mathf.RoundToInt(child.transform.position.x),
                     Mathf.RoundToInt(child.transform.position.y)
                 );
