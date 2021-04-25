@@ -15,13 +15,13 @@ namespace Level
         public bool finished;
         public bool changed;
 
-        public TileDefinition[,] BackgroundTiles;
-        public TileDefinition[,] OreTiles;
+        public TileDefinition[,] backgroundTiles;
+        public TileDefinition[,] oreTiles;
 
         public void Initialize(int size, int oreFactor, int posX, int posY, LayerDefinition layerDefinition)
         {
-            BackgroundTiles = new TileDefinition[size, size];
-            OreTiles = new TileDefinition[size / oreFactor, size / oreFactor];
+            backgroundTiles = new TileDefinition[size, size];
+            oreTiles = new TileDefinition[size / oreFactor, size / oreFactor];
             
             chunkSize = size;
             oreSize = oreFactor;
@@ -65,7 +65,7 @@ namespace Level
             {
                 for (var ty = 0; ty < chunkSize; ty++)
                 {
-                    var tile = BackgroundTiles[tx, ty];
+                    var tile = backgroundTiles[tx, ty];
 
                     vertices.Add(new Vector3(tx, ty, 0));
                     vertices.Add(new Vector3(tx + 1, ty, 0));
@@ -109,7 +109,7 @@ namespace Level
             {
                 for (var ty = 0; ty < chunkSize / oreSize; ty++)
                 {
-                    var tile = OreTiles[tx, ty];
+                    var tile = oreTiles[tx, ty];
                     if (!tile)
                     {
                         continue;

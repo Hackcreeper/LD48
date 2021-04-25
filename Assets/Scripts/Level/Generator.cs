@@ -63,7 +63,7 @@ namespace Level
                         }
                     }
                     
-                    chunk.BackgroundTiles[x, y] = chunk.layer.GetRandomBaseTile(selected);
+                    chunk.backgroundTiles[x, y] = chunk.layer.GetRandomBaseTile(selected);
                 }
                 yield return null;
             }
@@ -85,7 +85,7 @@ namespace Level
                     }
             
                     var ore = chunk.layer.GetRandomOreTile(level, chunk.x * level.chunkSize + x, chunk.y * level.chunkSize + y);
-                    chunk.OreTiles[x, y] = ore;
+                    chunk.oreTiles[x, y] = ore;
                 }
 
                 yield return null;

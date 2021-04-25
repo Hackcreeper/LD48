@@ -7,7 +7,6 @@ using UnityEngine;
 public class LevelGenerator : MonoBehaviour 
 {
     public LayerDefinition[] layers;
-    public GameObject chunkPrefab;
     public TileDefinition backgroundTile;
     public Generator generator;
 
@@ -25,7 +24,6 @@ public class LevelGenerator : MonoBehaviour
         var toBeRemoved = new List<string>();
         foreach (var chunk in chunks.Where(chunk => chunk.Value.y > chunkY + 1))
         {
-            chunk.Value.gameObject.SetActive(false);
             Destroy(chunk.Value.gameObject);
             toBeRemoved.Add(chunk.Key);
         }
@@ -48,7 +46,7 @@ public class LevelGenerator : MonoBehaviour
 
     private int GetChunkByCoordinate(float coordinate)
     {
-        return Mathf.FloorToInt(coordinate / (float) chunkSize);
+        return Mathf.FloorToInt(coordinate / chunkSize);
     }
 
     public TileDefinition GetTileAt(int x, int y)
@@ -60,11 +58,11 @@ public class LevelGenerator : MonoBehaviour
         var withinY = y - (chunkY * chunkSize);
 
         return chunks.ContainsKey(chunkX + "_" + chunkY)
-            ? chunks[chunkX + "_" + chunkY].BackgroundTiles[withinX, withinY]
+            ? chunks[chunkX + "_" + chunkY].backgroundTiles[withinX, withinY]
             : null;
     }
 
-    public TileDefinition GetOreAt(int x, int y)
+    private TileDefinition GetOreAt(int x, int y)
     {
         var chunkX = GetChunkByCoordinate(x);
         var chunkY = GetChunkByCoordinate(y);
@@ -73,7 +71,7 @@ public class LevelGenerator : MonoBehaviour
         var withinY = Mathf.FloorToInt((y - (chunkY * chunkSize)) / (float)oreSize);
 
         return chunks.ContainsKey(chunkX + "_" + chunkY)
-            ? chunks[chunkX + "_" + chunkY].OreTiles[withinX, withinY]
+            ? chunks[chunkX + "_" + chunkY].oreTiles[withinX, withinY]
             : null;
     }
 
@@ -109,7 +107,7 @@ public class LevelGenerator : MonoBehaviour
         var withinX = x - (chunkX * chunkSize);
         var withinY = y - (chunkY * chunkSize);
 
-        chunks[chunkX + "_" + chunkY].BackgroundTiles[withinX, withinY] = backgroundTile;
+        chunks[chunkX + "_" + chunkY].backgroundTiles[withinX, withinY] = backgroundTile;
         return true;
     }
     
@@ -124,7 +122,7 @@ public class LevelGenerator : MonoBehaviour
         var withinX = Mathf.FloorToInt((x - (chunkX * chunkSize)) / (float)oreSize);
         var withinY = Mathf.FloorToInt((y - (chunkY * chunkSize)) / (float)oreSize);
 
-        chunks[chunkX + "_" + chunkY].OreTiles[withinX, withinY] = null;
+        chunks[chunkX + "_" + chunkY].oreTiles[withinX, withinY] = null;
 
         if (tile.restoreEnergy > 0)
         {
