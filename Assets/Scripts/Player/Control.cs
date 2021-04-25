@@ -10,11 +10,18 @@ namespace Player
         public LevelGenerator level;
         public int minAngle = -20;
         public int maxAngle = 20;
+        public int maxEnergy = 100;
 
         private float _angle;
         private bool _pressingLeft;
         private bool _pressingRight;
-        
+        private float _energy;
+
+        private void Awake()
+        {
+            _energy = maxEnergy;
+        }
+
         private void Update()
         {
             if (!_pressingLeft && !_pressingRight)

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8a28ed53d14cb49c698fe0ac9de112, type: 3}
   m_Name: Ruby
   m_EditorClassIdentifier: 
-  texture: {fileID: 2800000, guid: 6fe42e86c49e64d89a19c1bf7b06eef7, type: 3}
+  texture: {fileID: 2800000, guid: da7f45837bff84f45b4f59ec78d806ef, type: 3}
   isOre: 1
   isBackground: 0
   mapX: 0.3125

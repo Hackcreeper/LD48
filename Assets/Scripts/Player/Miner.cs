@@ -1,15 +1,14 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Player
 {
     public class Miner : MonoBehaviour
     {
-        public int rayLines = 10;
-        public float totalHeight = 2.5f;
-        public float decraseEachStepBy = .18f;
-        public float startLength = 1.8f;
+        public int points = 10;
         public float startY = -.6f;
+        public float width = 3f;
 
         public GameObject checkParent;
         public LevelGenerator level;
@@ -21,79 +20,53 @@ namespace Player
                 var child = checkParent.transform.GetChild(i);
 
                 level.DestroyTile(
-                    Mathf.FloorToInt(child.transform.position.x),
-                    Mathf.FloorToInt(child.transform.position.y)
+                    Mathf.RoundToInt(child.transform.position.x),
+                    Mathf.RoundToInt(child.transform.position.y)
                 );
             }
-
-
-            // for (var i = 0; i < rayLines; i++)
-            // {
-            //     // now shoot one left and one right
-            //     var angle = transform.rotation.eulerAngles.z * Mathf.PI / 180;
-            //     var position = transform.position + new Vector3(0, startY - totalHeight / (rayLines + 2) * i, 0);
-            //
-            //     
-            //     Gizmos.DrawRay(position, transform.right * length);
-            //     Gizmos.DrawRay(position, -transform.right * length);
-            //
-            //     length -= decraseEachStepBy;
-            // }
         }
 
         public void GenerateChecks()
         {
             Debug.Log("Generating check points");
-            
-            var length = startLength;
 
-            for (var i = 0; i < rayLines; i++)
+            foreach (var position in GetPoints())
             {
-                // now shoot one left and one right
-                var angle = transform.rotation.eulerAngles.z * Mathf.PI / 180;
-                var position = transform.position + new Vector3(0, startY - totalHeight / (rayLines + 2) * i, 0);
-
-                var sphereRight = new GameObject("Check_Right_" + i);
+                var sphereRight = new GameObject("Check");
                 sphereRight.transform.parent = checkParent.transform;
-                sphereRight.transform.position = position + transform.right * length; 
-                
-                var sphereLeft = new GameObject("Check_Left_" + i);
-                sphereLeft.transform.parent = checkParent.transform;
-                sphereLeft.transform.position = position - transform.right * length; 
-
-                length -= decraseEachStepBy;
+                sphereRight.transform.position = position;
             }
 
             Debug.Log("Done!");
         }
-        
+
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.cyan;
 
-            var length = startLength;
-
-            for (var i = 0; i < rayLines; i++)
+            foreach (var position in GetPoints())
             {
-                // now shoot one left and one right
-                var angle = transform.rotation.eulerAngles.z * Mathf.PI / 180;
-                var position = transform.position + new Vector3(0, startY - totalHeight / (rayLines + 2) * i, 0);
-                
-                Gizmos.DrawRay(position, transform.right * length);
-                Gizmos.DrawRay(position, -transform.right * length);
-                
                 Gizmos.DrawSphere(
-                    position + transform.right * length,
+                    position,
                     .1f
                 );
-                
-                Gizmos.DrawSphere(
-                    position - transform.right * length,
-                    .1f
-                ); 
-
-                length -= decraseEachStepBy;
             }
+        }
+
+        private List<Vector3> GetPoints()
+        {
+            var pointList = new List<Vector3>();
+
+            for (var i = 0; i < points; i++)
+            {
+                pointList.Add(transform.position + new Vector3(
+                    -width / 2f + (width / (points - 1) * i),
+                    startY,
+                    0
+                ));
+            }
+
+            return pointList;
         }
     }
 }

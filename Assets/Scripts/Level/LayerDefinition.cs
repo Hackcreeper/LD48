@@ -14,7 +14,6 @@ namespace Level
 
         public float noiseScale = 10f;
         public float oreThreshold = 0.8f;
-        public float mixChance = 0.2f;
 
         public TileDefinition GetRandomBaseTile()
         {
@@ -58,12 +57,7 @@ namespace Level
                 neighbours.Add(right);
             }
             
-            if (neighbours.Count == 0 || Random.Range(0f, 1f) < mixChance)
-            {
-                return GetTrueRandomOre();
-            }
-            
-            return neighbours[Random.Range(0, neighbours.Count)];
+            return neighbours.Count == 0 ? GetTrueRandomOre() : neighbours[Random.Range(0, neighbours.Count)];
         }
 
         private TileDefinition GetTrueRandomOre()

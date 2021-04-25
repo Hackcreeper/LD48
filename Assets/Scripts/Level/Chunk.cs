@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -11,22 +10,46 @@ namespace Level
         public int x;
         public int y;
         public int chunkSize;
+        public int oreSize;
         public MeshFilter oreMesh;
+        public MeshFilter backgroundMesh;
         public LayerDefinition layer;
+        public bool finished;
+        public bool changed;
 
-        public TileDefinition[,] Tiles;
+        public TileDefinition[,] BackgroundTiles;
+        public TileDefinition[,] OreTiles;
 
-        public void Initialize(int chunkSize, int posX, int posY, LayerDefinition layerDefinition)
+        public void Initialize(int size, int oreFactor, int posX, int posY, LayerDefinition layerDefinition)
         {
-            Tiles = new TileDefinition[chunkSize, chunkSize];
-            this.chunkSize = chunkSize;
+            BackgroundTiles = new TileDefinition[size, size];
+            OreTiles = new TileDefinition[size / oreFactor, size / oreFactor];
+            
+            chunkSize = size;
+            oreSize = oreFactor;
             x = posX;
             y = posY;
             layer = layerDefinition;
         }
 
+        private void Update()
+        {
+            if (!changed)
+            {
+                return;
+            }
+            
+            GenerateMesh();
+            changed = false;
+        }
+        
         public void GenerateMesh()
         {
+            if (!finished)
+            {
+                return;
+            }
+            
             GenerateBackgroundMesh();
             GenerateOreMesh();
         }
@@ -37,18 +60,14 @@ namespace Level
             var triangles = new List<int>();
             var uvs = new List<Vector2>();
 
-            var mesh = GetComponent<MeshFilter>().mesh;
+            var mesh = backgroundMesh.mesh;
 
-            int squares = 0;
+            var squares = 0;
             for (var tx = 0; tx < chunkSize; tx++)
             {
                 for (var ty = 0; ty < chunkSize; ty++)
                 {
-                    var tile = Tiles[tx, ty];
-                    if (tile.isOre)
-                    {
-                        tile = layer.baseTiles[GetRandomNumberBasedOnCoords(x*chunkSize+tx, y*chunkSize+ty, 0, layer.baseTiles.Length)].tile;
-                    }
+                    var tile = BackgroundTiles[tx, ty];
 
                     vertices.Add(new Vector3(tx, ty, 0));
                     vertices.Add(new Vector3(tx + 1, ty, 0));
@@ -88,20 +107,20 @@ namespace Level
             var mesh = oreMesh.mesh;
 
             var squares = 0;
-            for (var tx = 0; tx < chunkSize; tx++)
+            for (var tx = 0; tx < chunkSize / oreSize; tx++)
             {
-                for (var ty = 0; ty < chunkSize; ty++)
+                for (var ty = 0; ty < chunkSize / oreSize; ty++)
                 {
-                    var tile = Tiles[tx, ty];
-                    if (!tile.isOre)
+                    var tile = OreTiles[tx, ty];
+                    if (!tile)
                     {
                         continue;
                     }
 
-                    vertices.Add(new Vector3(tx, ty, 0));
-                    vertices.Add(new Vector3(tx + 1.5f, ty, 0));
-                    vertices.Add(new Vector3(tx + 1.5f, ty - 1.5f, 0));
-                    vertices.Add(new Vector3(tx, ty - 1.5f, 0));
+                    vertices.Add(new Vector3(tx * oreSize, ty * oreSize, 0));
+                    vertices.Add(new Vector3(tx * oreSize + oreSize, ty * oreSize, 0));
+                    vertices.Add(new Vector3(tx * oreSize + oreSize, ty * oreSize - oreSize, 0));
+                    vertices.Add(new Vector3(tx * oreSize, ty * oreSize - oreSize, 0));
 
                     triangles.Add(squares * 4 + 0);
                     triangles.Add(squares * 4 + 1);
@@ -125,15 +144,6 @@ namespace Level
             mesh.uv = uvs.ToArray();
             mesh.Optimize();
             mesh.RecalculateNormals();
-        }
-
-        private int GetRandomNumberBasedOnCoords(int x, int y, int min, int max)
-        {
-            var seed = BitConverter.ToInt32(BitConverter.GetBytes(
-                x * 17 + y
-            ), 0);
-
-            return new System.Random(seed).Next(min, max);
         }
     }
 }

@@ -35,4 +35,3 @@ MonoBehaviour:
   startY: 0
   noiseScale: 20
   oreThreshold: 0.7
-  mixChance: 0

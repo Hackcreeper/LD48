@@ -5,22 +5,18 @@ using Player;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class LevelGenerator : MonoBehaviour
+public class LevelGenerator : MonoBehaviour 
 {
     public LayerDefinition[] layers;
     public GameObject chunkPrefab;
     public TileDefinition backgroundTile;
-    
+    public Generator generator;
+
     public int chunkSize = 60;
+    public int oreSize = 3;
     public Control player;
-
-    private float _noiseSeed;
-    private readonly Dictionary<string, Chunk> _chunks = new Dictionary<string, Chunk>();
-
-    private void Awake()
-    {
-        _noiseSeed = Random.Range(-100000.0f, 100000.0f);
-    }
+    
+    public readonly Dictionary<string, Chunk> chunks = new Dictionary<string, Chunk>();
     
     private void Update()
     {
@@ -28,66 +24,34 @@ public class LevelGenerator : MonoBehaviour
         var chunkY = GetChunkByCoordinate(player.transform.position.y);
 
         var toBeRemoved = new List<string>();
-        foreach (var chunk in _chunks.Where(chunk => chunk.Value.y > chunkY + 1))
+        foreach (var chunk in chunks.Where(chunk => chunk.Value.y > chunkY + 1))
         {
+            chunk.Value.gameObject.SetActive(false);
             Destroy(chunk.Value.gameObject);
             toBeRemoved.Add(chunk.Key);
         }
-        
-        toBeRemoved.ForEach(chunk => _chunks.Remove(chunk));
-        
+
+        toBeRemoved.ForEach(chunk => chunks.Remove(chunk));
+
         GenerateChunk(chunkX, chunkY);
-        GenerateChunk(chunkX-1, chunkY);
-        GenerateChunk(chunkX+1, chunkY);
-        
-        GenerateChunk(chunkX, chunkY-1);
-        GenerateChunk(chunkX-1, chunkY-1);
-        GenerateChunk(chunkX+1, chunkY-1);
+        GenerateChunk(chunkX - 1, chunkY);
+        GenerateChunk(chunkX + 1, chunkY);
+
+        GenerateChunk(chunkX, chunkY - 1);
+        GenerateChunk(chunkX - 1, chunkY - 1);
+        GenerateChunk(chunkX + 1, chunkY - 1);
     }
 
     private void GenerateChunk(int chunkX, int chunkY)
     {
-        if (_chunks.ContainsKey(chunkX + "_" + chunkY))
-        {
-            return;
-        }
-        
-        var layer = GetLayerByY(chunkY);
-
-        var chunk = Instantiate(
-            chunkPrefab,
-            new Vector3(chunkX * chunkSize, chunkY * chunkSize),
-            Quaternion.identity
-        );
-        chunk.name = $"Chunk_{chunkX}_{chunkY}";
-
-        var chunkComponent = chunk.GetComponent<Chunk>();
-        chunkComponent.Initialize(chunkSize, chunkX, chunkY, layer);
-
-        _chunks.Add(chunkX + "_" + chunkY, chunkComponent);
-        
-        for (var x = 0; x < chunkSize; x++)
-        {
-            for (var y = 0; y < chunkSize; y++)
-            {
-                var noise = GetNoise(chunkX * chunkSize + x, chunkY * chunkSize + y, layer.noiseScale);
-
-                var tile = noise > layer.oreThreshold
-                    ? layer.GetRandomOreTile(this, chunkX * chunkSize + x, chunkY * chunkSize + y)
-                    : layer.GetRandomBaseTile();
-
-                chunkComponent.Tiles[x, y] = tile;
-            }
-        }
-
-        chunkComponent.GenerateMesh();
+        generator.GenerateChunk(chunkX, chunkY);
     }
 
     private int GetChunkByCoordinate(float coordinate)
     {
         return Mathf.FloorToInt(coordinate / (float) chunkSize);
     }
-    
+
     public TileDefinition GetTileAt(int x, int y)
     {
         var chunkX = GetChunkByCoordinate(x);
@@ -96,48 +60,83 @@ public class LevelGenerator : MonoBehaviour
         var withinX = x - (chunkX * chunkSize);
         var withinY = y - (chunkY * chunkSize);
 
-        return _chunks.ContainsKey(chunkX + "_" + chunkY)
-            ? _chunks[chunkX + "_" + chunkY].Tiles[withinX, withinY]
+        return chunks.ContainsKey(chunkX + "_" + chunkY)
+            ? chunks[chunkX + "_" + chunkY].BackgroundTiles[withinX, withinY]
+            : null;
+    }
+
+    public TileDefinition GetOreAt(int x, int y)
+    {
+        var chunkX = GetChunkByCoordinate(x);
+        var chunkY = GetChunkByCoordinate(y);
+
+        var withinX = Mathf.FloorToInt((x - (chunkX * chunkSize)) / (float)oreSize);
+        var withinY = Mathf.FloorToInt((y - (chunkY * chunkSize)) / (float)oreSize);
+
+        return chunks.ContainsKey(chunkX + "_" + chunkY)
+            ? chunks[chunkX + "_" + chunkY].OreTiles[withinX, withinY]
             : null;
     }
 
     public int DestroyTile(int x, int y)
     {
-        var tile = GetTileAt(x, y);
-        if (!tile || tile.isBackground)
+        var chunkX = GetChunkByCoordinate(x);
+        var chunkY = GetChunkByCoordinate(y);
+        
+        if (!chunks.ContainsKey($"{chunkX}_{chunkY}"))
         {
             return 0;
         }
         
-        var chunkX = GetChunkByCoordinate(x);
-        var chunkY = GetChunkByCoordinate(y);
+        var removed = RemoveBackground(chunkX, chunkY, x, y);
+        var score = RemoveOre(chunkX, chunkY, x, y);
+
+        if (removed || score > 0)
+        {
+            chunks[chunkX + "_" + chunkY].changed = true;
+        }
+
+        return score;
+    }
+
+    private bool RemoveBackground(int chunkX, int chunkY, int x, int y)
+    {
+        var tile = GetTileAt(x, y);
+        if (!tile || tile.isBackground)
+        {
+            return false;
+        }
 
         var withinX = x - (chunkX * chunkSize);
         var withinY = y - (chunkY * chunkSize);
 
-        if (!_chunks.ContainsKey($"{chunkX}_{chunkY}"))
+        chunks[chunkX + "_" + chunkY].BackgroundTiles[withinX, withinY] = backgroundTile;
+        return true;
+    }
+    
+    private int RemoveOre(int chunkX, int chunkY, int x, int y)
+    {
+        var tile = GetOreAt(x, y);
+        if (!tile)
         {
             return 0;
         }
 
-        _chunks[chunkX + "_" + chunkY].Tiles[withinX, withinY] = backgroundTile;
-        _chunks[chunkX + "_" + chunkY].GenerateMesh();
+        // var withinX = x / oreSize - (chunkX * chunkSize);
+        // var withinY = y / oreSize - (chunkY * chunkSize);
+        
+        var withinX = Mathf.FloorToInt((x - (chunkX * chunkSize)) / (float)oreSize);
+        var withinY = Mathf.FloorToInt((y - (chunkY * chunkSize)) / (float)oreSize);
 
-        return 0;
+        chunks[chunkX + "_" + chunkY].OreTiles[withinX, withinY] = null;
+
+        return 1; // TODO: Replace with real score
     }
-
-    private float GetNoise(float x, float y, float scale)
-    {
-        return Mathf.PerlinNoise(
-            (_noiseSeed + x) / scale,
-            (_noiseSeed + y) / scale
-        );
-    }
-
-    private LayerDefinition GetLayerByY(int y)
+    
+    public LayerDefinition GetLayerByY(int y)
     {
         var chosen = layers[0];
-        
+
         foreach (var layer in layers)
         {
             if (layer.startY <= -y)
