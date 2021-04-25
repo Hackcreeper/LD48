@@ -8,17 +8,17 @@ namespace Level
     [CreateAssetMenu(fileName = "LevelLayer", menuName = "Levels/Layer", order = 1)]
     public class LayerDefinition : ScriptableObject
     {
-        public LayerTile[] baseTiles;
+        public BackgroundType[] baseTiles;
         public LayerTile[] oreTiles;
         public int startY;
 
         public float noiseScale = 10f;
         public float oreThreshold = 0.8f;
 
-        public TileDefinition GetRandomBaseTile()
+        public TileDefinition GetRandomBaseTile(BackgroundType type)
         {
             var possibilities = new List<TileDefinition>();
-            foreach (var layerTile in baseTiles)
+            foreach (var layerTile in type.tiles)
             {
                 for (var i = 0; i < layerTile.chance; i++)
                 {
@@ -75,6 +75,13 @@ namespace Level
         }
     }
 
+    [Serializable]
+    public struct BackgroundType
+    {
+        public LayerTile[] tiles;
+        public float minNoise;
+    }
+    
     [Serializable]
     public struct LayerTile
     {

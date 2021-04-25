@@ -1822,10 +1822,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   layers:
-  - {fileID: 11400000, guid: 49e6f60385c4140aca70026083940062, type: 2}
-  - {fileID: 11400000, guid: e47b425eb8ff542168d332762fa5b59c, type: 2}
-  - {fileID: 11400000, guid: 380c7b403825d4b1e9b91a618d28a882, type: 2}
-  - {fileID: 11400000, guid: 736028ebe03284fc99dc36312df50f30, type: 2}
+  - {fileID: 11400000, guid: 496063f06ab7b4d0caeb6e89194b7c9d, type: 2}
+  - {fileID: 11400000, guid: bfab9cedbead44c23a8c478f11284dd4, type: 2}
+  - {fileID: 11400000, guid: 2e5bf6583c5c947e482a96029d3d5b4b, type: 2}
+  - {fileID: 11400000, guid: d9971876dd3744087b3a51ea5dce2f86, type: 2}
+  - {fileID: 11400000, guid: 07e9444bcde894bd89ce960975de4dc9, type: 2}
+  - {fileID: 11400000, guid: 8d5a359ccabf84aaea8e5a57afae75d9, type: 2}
   chunkPrefab: {fileID: 637217819247942662, guid: 22a6d9041bb694649b74e47a683f0d27, type: 3}
   backgroundTile: {fileID: 11400000, guid: dda3ff5e5a80349adb86082089e7cdb0, type: 2}
   generator: {fileID: 1159244381}

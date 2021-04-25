@@ -8,11 +8,13 @@ namespace Level
         public LevelGenerator level;
         public GameObject chunkPrefab;
         
-        private float _noiseSeed;
+        private float _noiseSeedBackground;
+        private float _noiseSeedOre;
         
         private void Awake()
         {
-            _noiseSeed = Random.Range(-100000.0f, 100000.0f);
+            _noiseSeedBackground = Random.Range(-100000.0f, 100000.0f);
+            _noiseSeedOre = Random.Range(-100000.0f, 100000.0f);
         }
 
         public void GenerateChunk(int chunkX, int chunkY)
@@ -45,7 +47,23 @@ namespace Level
             {
                 for (var y = 0; y < level.chunkSize; y++)
                 {
-                    chunk.BackgroundTiles[x, y] = chunk.layer.GetRandomBaseTile();
+                    var noise = GetNoise(
+                        chunk.x * level.chunkSize + x, 
+                        chunk.y * level.chunkSize + y,
+                        chunk.layer.noiseScale,
+                        _noiseSeedBackground
+                    );
+
+                    var selected = chunk.layer.baseTiles[0];
+                    foreach (var type in chunk.layer.baseTiles)
+                    {
+                        if (noise >= type.minNoise)
+                        {
+                            selected = type;
+                        }
+                    }
+                    
+                    chunk.BackgroundTiles[x, y] = chunk.layer.GetRandomBaseTile(selected);
                 }
                 yield return null;
             }
@@ -57,7 +75,8 @@ namespace Level
                     var noise = GetNoise(
                         chunk.x * level.chunkSize + x * level.oreSize, 
                         chunk.y * level.chunkSize + y * level.oreSize,
-                        chunk.layer.noiseScale
+                        chunk.layer.noiseScale,
+                        _noiseSeedOre
                     );
             
                     if (noise < chunk.layer.oreThreshold)
@@ -76,11 +95,11 @@ namespace Level
             chunk.GenerateMesh();
         }
         
-        private float GetNoise(float x, float y, float scale)
+        private float GetNoise(float x, float y, float scale, float seed)
         {
             return Mathf.PerlinNoise(
-                (_noiseSeed + x) / scale,
-                (_noiseSeed + y) / scale
+                (seed + x) / scale,
+                (seed + y) / scale
             );
         }
     }

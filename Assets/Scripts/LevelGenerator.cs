@@ -121,9 +121,6 @@ public class LevelGenerator : MonoBehaviour
             return 0;
         }
 
-        // var withinX = x / oreSize - (chunkX * chunkSize);
-        // var withinY = y / oreSize - (chunkY * chunkSize);
-        
         var withinX = Mathf.FloorToInt((x - (chunkX * chunkSize)) / (float)oreSize);
         var withinY = Mathf.FloorToInt((y - (chunkY * chunkSize)) / (float)oreSize);
 
