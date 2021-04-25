@@ -5,8 +5,14 @@ public class Player : MonoBehaviour
     public float speed = 4;
     public LevelGenerator level;
 
+    private int minAngle;
+    private int maxAngle;
+    
     private void Update()
     {
+        // How to handle rotation
+        // We only allow rotation from min and max angles
+    
         transform.Translate(0, -speed * Time.deltaTime, 0);
 
         Drill(2, 0, 3);
