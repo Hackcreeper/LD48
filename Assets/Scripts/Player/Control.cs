@@ -20,6 +20,7 @@ namespace Player
         public int score;
         public TextMeshProUGUI scoreLabel;
         public TextMeshProUGUI rankLabel;
+        public GameObject guestGameOverScreen;
 
         private float _angle;
         private bool _pressingLeft;
@@ -81,11 +82,6 @@ namespace Player
                 Die();
             }
             
-            if (Application.isEditor && Input.GetKeyDown(KeyCode.H))
-            {
-                GameJoltUI.Instance.QueueNotification("Muhkuh macht die Muhkuh!");
-            }
-            
             if (Application.isEditor && Input.GetKeyDown(KeyCode.L))
             {
                 GameJoltUI.Instance.ShowSignIn();
@@ -96,7 +92,7 @@ namespace Player
                 return;
             }
             
-            GameJolt.API.Scores.GetRank(score, 618313, (int rank) =>
+            Scores.GetRank(score, 618313, (int rank) =>
             {
                 rankLabel.text = $"Rank {rank}";
             });
@@ -105,7 +101,7 @@ namespace Player
         private void Die()
         {
             _dead = true;
-
+            
             if (GameJoltAPI.Instance.HasSignedInUser)
             {
                 Scores.Add(score, score.ToString(), 618313, null, (bool success) =>
@@ -114,13 +110,8 @@ namespace Player
                 });
                 return;
             }
-
-            var playerName = "Bobby Bauer";
             
-            Scores.Add(score, score.ToString(), playerName, 618313, null, (bool success) =>
-            {
-                GameJoltUI.Instance.ShowLeaderboards(); 
-            });
+            guestGameOverScreen.SetActive(true);
         }
 
         public void MoveLeft(InputAction.CallbackContext context)
