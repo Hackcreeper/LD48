@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +10,9 @@ namespace Player
         public int minAngle = -20;
         public int maxAngle = 20;
         public int maxEnergy = 100;
+        public RectTransform energyBar;
+        public float maxHeightEnergyBar;
+        public float energyEfficiency = 1;
 
         private float _angle;
         private bool _pressingLeft;
@@ -46,6 +48,13 @@ namespace Player
             
             transform.Translate(0, -speed * Time.deltaTime, 0);
             transform.rotation = Quaternion.Euler(0, 0, _angle);
+
+            _energy -= energyEfficiency * Time.deltaTime;
+
+            energyBar.sizeDelta = new Vector2(
+                energyBar.sizeDelta.x,
+                maxHeightEnergyBar / maxEnergy * _energy
+            );
         }
         
         public void MoveLeft(InputAction.CallbackContext context)
@@ -68,6 +77,11 @@ namespace Player
             }
 
             _pressingRight = true;
+        }
+
+        public void RestoreEnergy(float add)
+        {
+            _energy = Mathf.Clamp(_energy + add, 0, maxEnergy);
         }
     }
 }

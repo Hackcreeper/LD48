@@ -8,6 +8,7 @@ namespace Level
         public Texture2D texture;
         public bool isOre = true;
         public bool isBackground = false;
+        public float restoreEnergy;
 
         public float mapX;
         public float mapY;

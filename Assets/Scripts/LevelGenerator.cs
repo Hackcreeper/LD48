@@ -3,7 +3,6 @@ using System.Linq;
 using Level;
 using Player;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class LevelGenerator : MonoBehaviour 
 {
@@ -130,6 +129,11 @@ public class LevelGenerator : MonoBehaviour
 
         chunks[chunkX + "_" + chunkY].OreTiles[withinX, withinY] = null;
 
+        if (tile.restoreEnergy > 0)
+        {
+            player.RestoreEnergy(tile.restoreEnergy);
+        }
+        
         return 1; // TODO: Replace with real score
     }
     
