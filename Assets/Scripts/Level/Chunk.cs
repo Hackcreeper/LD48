@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Level
 {
@@ -71,7 +72,7 @@ namespace Level
                     vertices.Add(new Vector3(tx + 1, ty, 0));
                     vertices.Add(new Vector3(tx + 1, ty - 1, 0));
                     vertices.Add(new Vector3(tx, ty - 1, 0));
-
+                    
                     triangles.Add(squares * 4 + 0);
                     triangles.Add(squares * 4 + 1);
                     triangles.Add(squares * 4 + 3);
@@ -100,6 +101,7 @@ namespace Level
         {
             var vertices = new List<Vector3>();
             var triangles = new List<int>();
+            var trianglesRuby = new List<int>();
             var uvs = new List<Vector2>();
 
             var mesh = oreMesh.mesh;
@@ -114,32 +116,47 @@ namespace Level
                     {
                         continue;
                     }
-
+                    
                     vertices.Add(new Vector3(tx * oreSize, ty * oreSize, 0));
                     vertices.Add(new Vector3(tx * oreSize + oreSize, ty * oreSize, 0));
                     vertices.Add(new Vector3(tx * oreSize + oreSize, ty * oreSize - oreSize, 0));
                     vertices.Add(new Vector3(tx * oreSize, ty * oreSize - oreSize, 0));
 
-                    triangles.Add(squares * 4 + 0);
-                    triangles.Add(squares * 4 + 1);
-                    triangles.Add(squares * 4 + 3);
-                    triangles.Add(squares * 4 + 1);
-                    triangles.Add(squares * 4 + 2);
-                    triangles.Add(squares * 4 + 3);
+                    if (tile.name == "Ruby")
+                    {
+                        trianglesRuby.Add(squares * 4 + 0);
+                        trianglesRuby.Add(squares * 4 + 1);
+                        trianglesRuby.Add(squares * 4 + 3);
+                        trianglesRuby.Add(squares * 4 + 1);
+                        trianglesRuby.Add(squares * 4 + 2);
+                        trianglesRuby.Add(squares * 4 + 3);
+                    }
+                    else
+                    {
+                        triangles.Add(squares * 4 + 0);
+                        triangles.Add(squares * 4 + 1);
+                        triangles.Add(squares * 4 + 3);
+                        triangles.Add(squares * 4 + 1);
+                        triangles.Add(squares * 4 + 2);
+                        triangles.Add(squares * 4 + 3);
+                    }
 
                     uvs.Add(new Vector2(tile.mapX, tile.mapY + tile.mapHeight));
                     uvs.Add(new Vector2(tile.mapX + tile.mapWidth, tile.mapY + tile.mapHeight));
                     uvs.Add(new Vector2(tile.mapX + tile.mapWidth, tile.mapY));
                     uvs.Add(new Vector2(tile.mapX, tile.mapY));
-
-                    squares++;
+                    
+                    squares++; 
                 }
             }
-
+            
             mesh.Clear();
+            mesh.subMeshCount = 2;
             mesh.vertices = vertices.ToArray();
-            mesh.triangles = triangles.ToArray();
             mesh.uv = uvs.ToArray();
+            
+            mesh.SetTriangles(triangles.ToArray(), 0);
+            mesh.SetTriangles(trianglesRuby.ToArray(), 1);
             mesh.Optimize();
             mesh.RecalculateNormals();
         }

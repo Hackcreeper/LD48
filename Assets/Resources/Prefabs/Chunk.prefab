@@ -104,6 +104,7 @@ MonoBehaviour:
   backgroundMesh: {fileID: 637217819247942660}
   layer: {fileID: 0}
   finished: 0
+  changed: 0
 --- !u!1 &8477525134480876673
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,6 +166,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: f0a59e6bd4f4d415daf44677b8466287, type: 2}
+  - {fileID: 2100000, guid: 7d6f7d09f1dcb402c913f47de6519622, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
