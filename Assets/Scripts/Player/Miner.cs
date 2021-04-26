@@ -20,10 +20,37 @@ namespace Player
         public GameObject checkParentBig3;
         public GameObject checkParentBig4;
 
+        public int sideArmLeftLevel;
+        public GameObject sideArmsLeftLevel1;
+        public GameObject sideArmsLeftLevel2;
+        public GameObject sideArmsLeftLevel3;
+        public GameObject sideArmsLeftLevel4;
+        public GameObject checkSideLeft;
+        
+        public int sideArmRightLevel;
+        public GameObject sideArmsRightLevel1;
+        public GameObject sideArmsRightLevel2;
+        public GameObject sideArmsRightLevel3;
+        public GameObject sideArmsRightLevel4;
+        public GameObject checkSideRight;
+
         private void Update()
         {
-            var parent = GetParent();
+            CheckChildren(GetParent());
 
+            if (sideArmLeftLevel > 0)
+            {
+                CheckChildren(checkSideLeft);
+            }
+            
+            if (sideArmRightLevel > 0)
+            {
+                CheckChildren(checkSideRight);
+            }
+        }
+
+        private void CheckChildren(GameObject parent)
+        {
             for (var i = 0; i < parent.transform.childCount; i++)
             {
                 var child = parent.transform.GetChild(i);
@@ -37,7 +64,7 @@ namespace Player
 
                     continue;
                 }
-                
+
                 player.score += level.DestroyTile(
                     Mathf.RoundToInt(child.transform.position.x),
                     Mathf.RoundToInt(child.transform.position.y)

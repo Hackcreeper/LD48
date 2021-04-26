@@ -12,6 +12,7 @@ namespace Upgrades
         public SlotElement[] slots;
         public Control player;
         public DrillHead drillHead;
+        public Miner miner;
 
         private readonly IUpgradeHandler[] _handlers = {
             new StrengthUpgradeHandler(),
@@ -19,7 +20,9 @@ namespace Upgrades
             new RotationSpeedUpgradeHandler(),
             new HeatShieldUpgradeHandler(),
             new DrillLevelUpgradeHandler(),
-            new BigDrillUpgradeHandler()
+            new BigDrillUpgradeHandler(),
+            new SideDrillLeftUpgradeHandler(),
+            new SideDrillRightUpgradeHandler()
         };
         
         private void Start()
