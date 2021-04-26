@@ -1408,13 +1408,14 @@ MonoBehaviour:
   heatBar: {fileID: 385954348}
   warnSprite: {fileID: 21300000, guid: 6ae54aba27dfd4c5090f115711b6fe7b, type: 3}
   volume: {fileID: 1968065555}
-  heatSpeedModificator: 0.1
+  heatSpeedModificator: 0.05
   cooldown: 0.5
   level1Body: {fileID: 2099204735}
   level2Body: {fileID: 601925729}
   level3Body: {fileID: 1499802256}
   level4Body: {fileID: 1481314965}
   drillLevel: 1
+  lavaTimer: 0
 --- !u!1 &168766050
 GameObject:
   m_ObjectHideFlags: 0
@@ -5143,8 +5144,10 @@ MonoBehaviour:
   backgroundTile: {fileID: 11400000, guid: dda3ff5e5a80349adb86082089e7cdb0, type: 2}
   generator: {fileID: 1159244381}
   chunkSize: 36
+  oilRestore: 10
   oreSize: 3
   player: {fileID: 137205701}
+  miner: {fileID: 137205699}
 --- !u!4 &1159244379
 Transform:
   m_ObjectHideFlags: 0
