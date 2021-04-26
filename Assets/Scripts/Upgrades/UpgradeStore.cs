@@ -13,6 +13,9 @@ namespace Upgrades
         public Control player;
         public DrillHead drillHead;
         public Miner miner;
+        public GameObject storeOverlay;
+
+        private bool _open;
 
         private readonly IUpgradeHandler[] _handlers = {
             new StrengthUpgradeHandler(),
@@ -38,6 +41,34 @@ namespace Upgrades
                 component.player = player;
                 component.store = this;
             }
+        }
+
+        private void Update()
+        {
+            if (!Input.GetKeyDown(KeyCode.U))
+            {
+                return;
+            }
+            
+            SetOpen(!_open);
+        }
+
+        public void Open()
+        {
+            SetOpen(true);
+        }
+
+        public void Close()
+        {
+            SetOpen(false);
+        }
+
+        private void SetOpen(bool open)
+        {
+            _open = open;
+            
+            storeOverlay.SetActive(_open);
+            Time.timeScale = _open ? 0 : 1;
         }
 
         private SlotElement GetSlot(UpgradeSlot slot)
