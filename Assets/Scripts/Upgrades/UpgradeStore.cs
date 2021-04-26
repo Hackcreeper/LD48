@@ -14,6 +14,7 @@ namespace Upgrades
         public DrillHead drillHead;
         public Miner miner;
         public GameObject storeOverlay;
+        public GameObject[] hideWhenOpen;
 
         private bool _open;
         private bool _closedForever;
@@ -74,6 +75,11 @@ namespace Upgrades
             _open = open;
             
             storeOverlay.SetActive(_open);
+            foreach (var hide in hideWhenOpen)
+            {
+                hide.SetActive(!_open);
+            }
+            
             Time.timeScale = _open ? 0 : 1;
         }
 
