@@ -38,9 +38,9 @@ namespace Player
         public int drillLevel = 1;
         public float lavaTimer;
         public UpgradeStore store;
+        public float lavaStrength = 1f;
 
         private float _angle;
-        private float _realAngle;
         private bool _pressingLeft;
         private bool _pressingRight;
         private float _energy;
@@ -68,7 +68,7 @@ namespace Player
             if (lavaTimer > 0f)
             {
                 lavaTimer -= Time.deltaTime;
-                _heat += 1f;
+                _heat += lavaStrength;
             }
             
             CalculateAngle();
