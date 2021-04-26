@@ -18,7 +18,6 @@ namespace Upgrades
         private bool _open;
 
         private readonly IUpgradeHandler[] _handlers = {
-            new StrengthUpgradeHandler(),
             new RotationAngleUpgradeHandler(),
             new RotationSpeedUpgradeHandler(),
             new HeatShieldUpgradeHandler(),
