@@ -55,6 +55,6 @@ MonoBehaviour:
     chance: 50
     minSize: 2
     maxSize: 6
-  startY: 5
+  startY: 20
   noiseScale: 10
   oreThreshold: 0.75

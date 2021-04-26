@@ -9,6 +9,7 @@ namespace Level
     {
         public LevelGenerator level;
         public GameObject chunkPrefab;
+        public TileDefinition tnt;
 
         private float _noiseSeedBackground;
         private float _noiseSeedOre;
@@ -84,6 +85,11 @@ namespace Level
 
                     if (noise < chunk.layer.oreThreshold)
                     {
+                        if (noise <= chunk.layer.tntThreshold)
+                        {
+                            chunk.oreTiles[x, y] = tnt;
+                        }
+                        
                         continue;
                     }
 
@@ -99,17 +105,42 @@ namespace Level
             }
 
             GenerateFluids(chunk);
+            FixTnt(chunk);
 
             chunk.finished = true;
             chunk.GenerateMesh();
         }
 
-        private static float GetNoise(float x, float y, float scale, float seed)
+        private void FixTnt(Chunk chunk)
         {
-            return Mathf.PerlinNoise(
-                (seed + x) / scale,
-                (seed + y) / scale
-            );
+            var tnts = new List<Coords>();
+            for (var x = 0; x < chunk.chunkSize / chunk.oreSize; x++)
+            {
+                for (var y = 0; y < chunk.chunkSize / chunk.oreSize; y++)
+                {
+                    if (chunk.oreTiles[x, y]?.name != "TNT")
+                    {
+                        continue;
+                    }
+                    
+                    tnts.Add(new Coords {x = x, y = y});
+                    chunk.oreTiles[x, y] = null;
+                }   
+            }
+            
+            tnts.Shuffle();
+
+            var count = 0;
+            tnts.ForEach(coords =>
+            {
+                if (count >= chunk.layer.maxTnt)
+                {
+                    return;
+                }
+                
+                chunk.oreTiles[coords.x, coords.y] = tnt;
+                count++;
+            });
         }
 
         private void GenerateFluids(Chunk chunk)
@@ -130,11 +161,11 @@ namespace Level
             }
 
             var selected = possible[Random.Range(0, possible.Count)];
-                width = Random.Range(selected.minSize, selected.maxSize);
-                height = Random.Range(selected.minSize, selected.maxSize);
-                fluid = selected.fluid;
-                startX = Random.Range(0, level.chunkSize / level.oreSize - width - 1);
-                startY = Random.Range(0, level.chunkSize / level.oreSize - height - 1);
+            width = Random.Range(selected.minSize, selected.maxSize);
+            height = Random.Range(selected.minSize, selected.maxSize);
+            fluid = selected.fluid;
+            startX = Random.Range(0, level.chunkSize / level.oreSize - width - 1);
+            startY = Random.Range(0, level.chunkSize / level.oreSize - height - 1);
 
             if (fluid.name == "Lava")
             {
@@ -166,6 +197,20 @@ namespace Level
                     chunk.fluidIndex[x, y] = Random.Range(0, fluid.fullTextures.Length);
                 }
             }
+        }
+
+        private static float GetNoise(float x, float y, float scale, float seed)
+        {
+            return Mathf.PerlinNoise(
+                (seed + x) / scale,
+                (seed + y) / scale
+            );
+        }
+
+        private struct Coords
+        {
+            public int x;
+            public int y;
         }
     }
 }

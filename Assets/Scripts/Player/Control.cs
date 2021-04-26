@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using Upgrades;
 
 namespace Player
 {
@@ -36,6 +37,7 @@ namespace Player
         public GameObject level4Body;
         public int drillLevel = 1;
         public float lavaTimer;
+        public UpgradeStore store;
 
         private float _angle;
         private float _realAngle;
@@ -116,13 +118,13 @@ namespace Player
 
             if (_energy <= 0)
             {
-                GameJoltUI.Instance.QueueNotification("You ran out of energy!");
+                GameJoltUI.Instance.QueueNotification("You ran out of energy!", warnSprite);
                 Die();
             }
 
             if (_heat >= 100)
             {
-                GameJoltUI.Instance.QueueNotification("You overheated!");
+                GameJoltUI.Instance.QueueNotification("You overheated!", warnSprite);
                 Die();
             }
 
@@ -184,9 +186,10 @@ namespace Player
             }
         }
 
-        private void Die()
+        public void Die()
         {
             _dead = true;
+            store.CloseForever();
 
             if (GameJoltAPI.Instance.HasSignedInUser)
             {

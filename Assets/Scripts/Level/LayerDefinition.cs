@@ -15,6 +15,8 @@ namespace Level
 
         public float noiseScale = 10f;
         public float oreThreshold = 0.8f;
+        public float tntThreshold = 0.1f;
+        public int maxTnt = 1;
 
         public TileDefinition GetRandomBaseTile(BackgroundType type)
         {

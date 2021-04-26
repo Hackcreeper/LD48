@@ -16,6 +16,7 @@ namespace Upgrades
         public GameObject storeOverlay;
 
         private bool _open;
+        private bool _closedForever;
 
         private readonly IUpgradeHandler[] _handlers = {
             new RotationAngleUpgradeHandler(),
@@ -45,7 +46,7 @@ namespace Upgrades
 
         private void Update()
         {
-            if (!Input.GetKeyDown(KeyCode.U))
+            if (!Input.GetKeyDown(KeyCode.U) || _closedForever)
             {
                 return;
             }
@@ -65,6 +66,11 @@ namespace Upgrades
 
         private void SetOpen(bool open)
         {
+            if (_closedForever)
+            {
+                return;
+            }
+            
             _open = open;
             
             storeOverlay.SetActive(_open);
@@ -79,6 +85,12 @@ namespace Upgrades
         public IUpgradeHandler GetHandler(Upgrade upgrade)
         {
             return _handlers.FirstOrDefault(handler => handler.GetId() == upgrade.id);
+        }
+
+        public void CloseForever()
+        {
+            Close();
+            _closedForever = true;
         }
     }
 

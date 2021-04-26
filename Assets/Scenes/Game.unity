@@ -431,11 +431,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4365908412933354032, guid: 16dd9a42ee3054bb5b05e442d5ba3042, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071067
+      value: 0.7048947
       objectReference: {fileID: 0}
     - target: {fileID: -4365908412933354032, guid: 16dd9a42ee3054bb5b05e442d5ba3042, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.7071069
+      value: 0.70931196
       objectReference: {fileID: 0}
     - target: {fileID: -3982090187110835266, guid: 16dd9a42ee3054bb5b05e442d5ba3042, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1416,6 +1416,7 @@ MonoBehaviour:
   level4Body: {fileID: 1481314965}
   drillLevel: 1
   lavaTimer: 0
+  store: {fileID: 1793420816}
 --- !u!1 &168766050
 GameObject:
   m_ObjectHideFlags: 0
@@ -5148,6 +5149,7 @@ MonoBehaviour:
   oreSize: 3
   player: {fileID: 137205701}
   miner: {fileID: 137205699}
+  warningSprite: {fileID: 21300000, guid: 6ae54aba27dfd4c5090f115711b6fe7b, type: 3}
 --- !u!4 &1159244379
 Transform:
   m_ObjectHideFlags: 0
@@ -5192,6 +5194,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 87610028c4e864a5abcdb38eac0b4c52, type: 2}
   - {fileID: 11400000, guid: 6f7f774481af047a38285d942522ff82, type: 2}
   - {fileID: 11400000, guid: f5a3e954ff35c4c5f85635a8831152cd, type: 2}
+  - {fileID: 11400000, guid: 98c9c22cf632346f3bdeb7177c9d28e8, type: 2}
   fluids:
   - {fileID: 11400000, guid: 62ad915e0c64d491e817f1f108c08ba7, type: 2}
   - {fileID: 11400000, guid: c4e2476dd6aab41c69b3aa70d5758f36, type: 2}
@@ -5210,6 +5213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: {fileID: 1159244378}
   chunkPrefab: {fileID: 637217819247942662, guid: 22a6d9041bb694649b74e47a683f0d27, type: 3}
+  tnt: {fileID: 11400000, guid: 98c9c22cf632346f3bdeb7177c9d28e8, type: 2}
 --- !u!1 &1163955290
 GameObject:
   m_ObjectHideFlags: 0
