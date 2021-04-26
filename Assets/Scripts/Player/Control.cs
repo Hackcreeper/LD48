@@ -6,16 +6,15 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.UI;
 
 namespace Player
 {
     public class Control : MonoBehaviour
     {
         public float speed = 16;
-        public LevelGenerator level;
         public int minAngle = -20;
         public int maxAngle = 20;
+        public int rotationSpeed = 5;
         public int maxEnergy = 100;
         public RectTransform energyBar;
         public float maxHeightEnergyBar;
@@ -23,7 +22,7 @@ namespace Player
         public int score;
         public TextMeshProUGUI scoreLabel;
         public TextMeshProUGUI rankLabel;
-        public TextMeshProUGUI moneyLabel;
+        public TextMeshProUGUI[] moneyLabels;
         public TextMeshProUGUI[] gameOverScoreLabels;
         public GameObject guestGameOverScreen;
         public RectTransform heatBar;
@@ -33,6 +32,7 @@ namespace Player
         public float cooldown = .1f;
 
         private float _angle;
+        private float _realAngle;
         private bool _pressingLeft;
         private bool _pressingRight;
         private float _energy;
@@ -60,9 +60,14 @@ namespace Player
             CalculateAngle();
 
             _realSpeed = speed - (heatSpeedModificator * _heat);
-
+            
             transform.Translate(0, -_realSpeed * Time.deltaTime, 0);
-            transform.rotation = Quaternion.Euler(0, 0, _angle);
+
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                Quaternion.Euler(0, 0, _angle),
+                (rotationSpeed / (float)maxAngle * 15f) * Time.deltaTime
+            );
 
             _energy -= energyEfficiency * Time.deltaTime;
 
@@ -91,7 +96,11 @@ namespace Player
             }
 
             scoreLabel.text = score.ToString();
-            moneyLabel.text = $"${_money.ToString()}";
+
+            foreach (var moneyLabel in moneyLabels)
+            {
+                moneyLabel.text = $"${_money.ToString()}";
+            }
 
             if (_energy <= 0)
             {
@@ -133,7 +142,7 @@ namespace Player
             Scores.GetRank(score, 618313, (int rank) => { _rank = rank; });
 
             rankLabel.text = $"Rank {_rank}";
-            
+
             foreach (var label in gameOverScoreLabels)
             {
                 label.text = $"Score: {score} (Rank {_rank})";
@@ -212,6 +221,13 @@ namespace Player
         public void AddMoney(int add)
         {
             _money += add;
+        }
+
+        public int GetMoney() => _money;
+
+        public void RemoveMoney(int remove)
+        {
+            _money = Mathf.Clamp(_money - remove, 0, int.MaxValue);
         }
     }
 }

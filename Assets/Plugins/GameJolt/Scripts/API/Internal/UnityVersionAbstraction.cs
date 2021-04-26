@@ -1,5 +1,4 @@
 ﻿using GameJolt.API.Core;
-using UnityEngine;
 using UnityEngine.Networking;
 
 namespace GameJolt.API.Internal {
