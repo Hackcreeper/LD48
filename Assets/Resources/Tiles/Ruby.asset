@@ -17,6 +17,7 @@ MonoBehaviour:
   isBackground: 0
   restoreEnergy: 0
   score: 5
+  money: 10
   mapX: 0.3125
   mapY: 0
   mapWidth: 0.25

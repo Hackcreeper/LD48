@@ -129,6 +129,8 @@ public class LevelGenerator : MonoBehaviour
             player.RestoreEnergy(tile.restoreEnergy);
         }
 
+        player.AddMoney(tile.money);
+
         return tile.score;
     }
     

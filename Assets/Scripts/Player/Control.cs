@@ -3,6 +3,8 @@ using GameJolt.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 namespace Player
@@ -20,17 +22,29 @@ namespace Player
         public int score;
         public TextMeshProUGUI scoreLabel;
         public TextMeshProUGUI rankLabel;
+        public TextMeshProUGUI moneyLabel;
         public GameObject guestGameOverScreen;
+        public RectTransform heatBar;
+        public Sprite warnSprite;
+        public Volume volume;
+        public float heatSpeedModificator = .1f;
+        public float cooldown = .1f;
 
         private float _angle;
         private bool _pressingLeft;
         private bool _pressingRight;
         private float _energy;
         private bool _dead;
+        private int _money;
+        private float _heat;
+        private Vignette _vignette;
+        private float _realSpeed;
 
         private void Awake()
         {
             _energy = maxEnergy;
+            _realSpeed = speed;
+            volume.profile.TryGet(out _vignette);
         }
 
         private void Update()
@@ -59,8 +73,10 @@ namespace Player
             {
                 _angle = 0;
             }
+
+            _realSpeed = speed - (heatSpeedModificator * _heat);
             
-            transform.Translate(0, -speed * Time.deltaTime, 0);
+            transform.Translate(0, -_realSpeed * Time.deltaTime, 0);
             transform.rotation = Quaternion.Euler(0, 0, _angle);
 
             _energy -= energyEfficiency * Time.deltaTime;
@@ -70,16 +86,49 @@ namespace Player
                 maxHeightEnergyBar / maxEnergy * _energy
             );
 
-            scoreLabel.text = score.ToString();
+            heatBar.sizeDelta = new Vector2(
+                heatBar.sizeDelta.x,
+                85f / 100 * _heat
+            );
 
+            _heat = Mathf.Clamp(_heat - cooldown * Time.deltaTime, 0, 100);
+            
+            // base is 0.451
+            if (_heat >= 70)
+            {
+                _vignette.intensity.value = 0.451f + 0.549f / 30 * (_heat - 70);
+                _vignette.color.value = Color.red;
+            }
+            else
+            {
+                _vignette.intensity.value = 0.451f;
+                _vignette.color.value = Color.black;   
+            }
+            
+            scoreLabel.text = score.ToString();
+            moneyLabel.text = $"${_money.ToString()}";
+            
             if (_energy <= 0)
             {
+                GameJoltUI.Instance.QueueNotification("You ran out of energy!");
+                Die();
+            }
+
+            if (_heat >= 100)
+            {
+                GameJoltUI.Instance.QueueNotification("You overheated!");
                 Die();
             }
             
-            if (Application.isEditor && Input.GetKeyDown(KeyCode.K))
+            if (Input.GetKeyDown(KeyCode.K))
             {
+                GameJoltUI.Instance.QueueNotification("You killed yourself!", warnSprite);
                 Die();
+            }
+            
+            if (Application.isEditor && Input.GetKeyDown(KeyCode.J))
+            {
+                _heat += 10;
             }
             
             if (Application.isEditor && Input.GetKeyDown(KeyCode.L))
@@ -139,6 +188,11 @@ namespace Player
         public void RestoreEnergy(float add)
         {
             _energy = Mathf.Clamp(_energy + add, 0, maxEnergy);
+        }
+
+        public void AddMoney(int add)
+        {
+            _money += add;
         }
     }
 }

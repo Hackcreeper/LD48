@@ -10,6 +10,7 @@ namespace Level
         public bool isBackground = false;
         public float restoreEnergy;
         public int score;
+        public int money;
 
         public float mapX;
         public float mapY;
