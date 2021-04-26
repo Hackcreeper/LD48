@@ -45,7 +45,7 @@ namespace Player
         private bool _pressingRight;
         private float _energy;
         private bool _dead;
-        private int _money = 1000;
+        private int _money;
         private int _rank;
         private float _heat;
         private Vignette _vignette;
