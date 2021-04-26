@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: big_drill
   label: Big Drill
-  level0Label: 
   description: Increases the drill head size
-  level0Description: 
   price: 10
   maxLevels: 1
   priceMultiplicator: 0
-  slot: 2
+  slot: 1
   startLevel: 0
+  removeAfterBuy: 1

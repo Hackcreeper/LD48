@@ -34,6 +34,7 @@ namespace Player
         public GameObject level2Body;
         public GameObject level3Body;
         public GameObject level4Body;
+        public int drillLevel = 1;
 
         private float _angle;
         private float _realAngle;
@@ -41,7 +42,7 @@ namespace Player
         private bool _pressingRight;
         private float _energy;
         private bool _dead;
-        private int _money;
+        private int _money = 1000;
         private int _rank;
         private float _heat;
         private Vignette _vignette;

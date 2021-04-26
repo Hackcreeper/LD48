@@ -18,7 +18,7 @@ namespace Upgrades.Handler
                     store.player.level2Body.SetActive(true);
 
                     store.player.speed *= 1.2f;
-
+                    store.player.drillLevel = 2;
                     break;
                 
                 case 3:
@@ -26,6 +26,7 @@ namespace Upgrades.Handler
                     store.player.level3Body.SetActive(true);
                     
                     store.player.speed *= 1.5f;
+                    store.player.drillLevel = 3;
                     break;
                 
                 case 4:
@@ -33,6 +34,7 @@ namespace Upgrades.Handler
                     store.player.level4Body.SetActive(true);
                     
                     store.player.speed *= 1.3f;
+                    store.player.drillLevel = 4;
                     break;
             }
         }

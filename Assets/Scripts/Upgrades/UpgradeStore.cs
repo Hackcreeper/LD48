@@ -11,13 +11,15 @@ namespace Upgrades
         public Upgrade[] initialUpgrades;
         public SlotElement[] slots;
         public Control player;
+        public DrillHead drillHead;
 
         private readonly IUpgradeHandler[] _handlers = {
             new StrengthUpgradeHandler(),
             new RotationAngleUpgradeHandler(),
             new RotationSpeedUpgradeHandler(),
             new HeatShieldUpgradeHandler(),
-            new DrillLevelUpgradeHandler()
+            new DrillLevelUpgradeHandler(),
+            new BigDrillUpgradeHandler()
         };
         
         private void Start()

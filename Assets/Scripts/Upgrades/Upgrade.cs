@@ -12,6 +12,7 @@ namespace Upgrades
         public int maxLevels = 1;
         public float priceMultiplicator = 1.5f;
         public UpgradeSlot slot;
-        public int startLevel = 0;
+        public int startLevel;
+        public bool removeAfterBuy;
     }
 }

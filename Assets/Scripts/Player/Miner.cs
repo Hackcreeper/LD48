@@ -9,15 +9,24 @@ namespace Player
         public float startY = -.6f;
         public float width = 3f;
 
-        public GameObject checkParent;
+        public GameObject generationParent;
         public LevelGenerator level;
         public Control player;
+        public DrillHead drillHead;
+        
+        public GameObject checkParent;
+        public GameObject checkParentBig1;
+        public GameObject checkParentBig2;
+        public GameObject checkParentBig3;
+        public GameObject checkParentBig4;
 
         private void Update()
         {
-            for (var i = 0; i < checkParent.transform.childCount; i++)
+            var parent = GetParent();
+
+            for (var i = 0; i < parent.transform.childCount; i++)
             {
-                var child = checkParent.transform.GetChild(i);
+                var child = parent.transform.GetChild(i);
 
                 if (child.localPosition.x < 0)
                 {
@@ -36,6 +45,22 @@ namespace Player
             }
         }
 
+        private GameObject GetParent()
+        {
+            if (!drillHead.isBig)
+            {
+                return checkParent;
+            }
+
+            return player.drillLevel switch
+            {
+                2 => checkParentBig2,
+                3 => checkParentBig3,
+                4 => checkParentBig4,
+                _ => checkParentBig1
+            };
+        }
+
         public void GenerateChecks()
         {
             Debug.Log("Generating check points");
@@ -43,7 +68,7 @@ namespace Player
             foreach (var position in GetPoints())
             {
                 var sphereRight = new GameObject("Check");
-                sphereRight.transform.parent = checkParent.transform;
+                sphereRight.transform.parent = generationParent.transform;
                 sphereRight.transform.position = position;
             }
 

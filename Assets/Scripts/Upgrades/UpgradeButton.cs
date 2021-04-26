@@ -51,6 +51,11 @@ namespace Upgrades
             Debug.Log("Bought: " + upgrade.name);
             
             store.GetHandler(upgrade)?.Handle(upgrade, _level, store);
+
+            if (upgrade.removeAfterBuy)
+            {
+                Destroy(gameObject);
+            }
         }
 
         protected int GetPrice()

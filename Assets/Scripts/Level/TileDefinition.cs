@@ -7,7 +7,7 @@ namespace Level
     {
         public Texture2D texture;
         public bool isOre = true;
-        public bool isBackground = false;
+        public bool isBackground;
         public float restoreEnergy;
         public int score;
         public int money;
