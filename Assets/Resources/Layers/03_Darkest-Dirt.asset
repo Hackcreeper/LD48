@@ -41,20 +41,16 @@ MonoBehaviour:
   - tile: {fileID: 11400000, guid: 8ad63e5edfd4f42c7a6bf60e48f4ae32, type: 2}
     chance: 10
   - tile: {fileID: 11400000, guid: 5ef345c75b094448a8454b0d3475cfc8, type: 2}
-    chance: 10
+    chance: 8
   - tile: {fileID: 11400000, guid: f5eb1c352efb54b09a5e20ce60cc4a6e, type: 2}
-    chance: 1
+    chance: 7
   - tile: {fileID: 11400000, guid: 87610028c4e864a5abcdb38eac0b4c52, type: 2}
-    chance: 1
-  - tile: {fileID: 11400000, guid: 6f7f774481af047a38285d942522ff82, type: 2}
-    chance: 1
-  - tile: {fileID: 11400000, guid: f5a3e954ff35c4c5f85635a8831152cd, type: 2}
-    chance: 1
+    chance: 4
   fluids:
   - fluid: {fileID: 11400000, guid: 62ad915e0c64d491e817f1f108c08ba7, type: 2}
     chance: 50
-    minSize: 3
-    maxSize: 5
+    minSize: 4
+    maxSize: 7
   - fluid: {fileID: 11400000, guid: c4e2476dd6aab41c69b3aa70d5758f36, type: 2}
     chance: 50
     minSize: 3
@@ -63,6 +59,8 @@ MonoBehaviour:
     chance: 50
     minSize: 2
     maxSize: 6
-  startY: 25
+  startY: 30
   noiseScale: 25
   oreThreshold: 0.6
+  tntThreshold: 0.1
+  maxTnt: 1
