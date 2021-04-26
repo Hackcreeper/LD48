@@ -1103,6 +1103,9 @@ MonoBehaviour:
   scoreLabel: {fileID: 1152427831}
   rankLabel: {fileID: 965557106}
   moneyLabel: {fileID: 883204391}
+  gameOverScoreLabels:
+  - {fileID: 1006701227}
+  - {fileID: 1458653890}
   guestGameOverScreen: {fileID: 520137983}
   heatBar: {fileID: 385954348}
   warnSprite: {fileID: 21300000, guid: 6ae54aba27dfd4c5090f115711b6fe7b, type: 3}
@@ -4069,7 +4072,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1423963924}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 520137986}
+        m_TargetAssemblyTypeName: Ui.GuestGameOver, Assembly-CSharp
+        m_MethodName: Restart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1423963924
 MonoBehaviour:
   m_ObjectHideFlags: 0

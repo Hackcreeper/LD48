@@ -12,6 +12,8 @@ namespace Ui
         public TMP_InputField input;
         public Control player;
 
+        private bool _wasFocused;
+
         public void Submit()
         {
             gameObject.SetActive(false);
@@ -22,7 +24,7 @@ namespace Ui
                 input.text, 
                 618313, 
                 null,
-                (bool success) =>
+                success =>
                 {
                     GameJoltUI.Instance.ShowLeaderboards((_) =>
                     {
@@ -30,10 +32,20 @@ namespace Ui
                     });
                 });
         }
-
+        
         public static void Restart()
         {
             SceneManager.LoadScene(0);
+        }
+
+        private void Update()
+        {
+            if (_wasFocused && Input.GetKeyDown(KeyCode.Return))
+            {
+                Submit();
+            }
+
+            _wasFocused = input.isFocused;
         }
     }
 }
