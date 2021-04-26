@@ -30,6 +30,10 @@ namespace Player
         public Volume volume;
         public float heatSpeedModificator = .1f;
         public float cooldown = .1f;
+        public GameObject level1Body;
+        public GameObject level2Body;
+        public GameObject level3Body;
+        public GameObject level4Body;
 
         private float _angle;
         private float _realAngle;

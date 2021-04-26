@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33db20cd1cb8477a9dcd09edc146142a, type: 3}
-  m_Name: DrillLevel
+  m_Name: Drill
   m_EditorClassIdentifier: 
   id: drill_level
-  label: Level {num}
-  description: Upgrades the drill to level {num}
+  label: Drill
+  description: Upgrade the strength and speed of your drill
   price: 10
-  unlocks: []
   maxLevels: 4
   priceMultiplicator: 0
   slot: 1

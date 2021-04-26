@@ -4,7 +4,6 @@ namespace Upgrades
     {
         Basic,
         Primary,
-        OneTime,
-        SideDrill
+        OneTime
     }
 }

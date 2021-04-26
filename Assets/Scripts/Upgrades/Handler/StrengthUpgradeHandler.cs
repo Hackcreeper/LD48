@@ -11,7 +11,24 @@ namespace Upgrades.Handler
 
         public void Handle(Upgrade upgrade, int level, UpgradeStore store)
         {
-            Debug.Log("Strength upgrade level " + level);
+            switch (level)
+            {
+                case 1:
+                    store.player.speed *= 1.1f;
+                    break;
+                
+                case 2:
+                    store.player.speed *= 1.1f;
+                    break;
+
+                case 3:
+                    store.player.speed *= 1.1f;
+                    break;
+
+                case 4:
+                    store.player.speed *= 1.1f;
+                    break;
+            }
         }
     }
 }

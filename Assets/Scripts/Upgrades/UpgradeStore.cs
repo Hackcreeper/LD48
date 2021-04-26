@@ -10,23 +10,23 @@ namespace Upgrades
     {
         public Upgrade[] initialUpgrades;
         public SlotElement[] slots;
-        public GameObject upgradePrefab;
         public Control player;
 
         private readonly IUpgradeHandler[] _handlers = {
             new StrengthUpgradeHandler(),
             new RotationAngleUpgradeHandler(),
             new RotationSpeedUpgradeHandler(),
-            new HeatShieldUpgradeHandler()
+            new HeatShieldUpgradeHandler(),
+            new DrillLevelUpgradeHandler()
         };
         
         private void Start()
         {
             foreach (var upgrade in initialUpgrades)
             {
-                var slotParent = GetParentForSlot(upgrade.slot);
+                var slot = GetSlot(upgrade.slot);
 
-                var button = Instantiate(upgradePrefab, slotParent);
+                var button = Instantiate(slot.prefab, slot.parent);
                 var component = button.GetComponent<UpgradeButton>();
                 
                 component.upgrade = upgrade;
@@ -35,9 +35,9 @@ namespace Upgrades
             }
         }
 
-        private RectTransform GetParentForSlot(UpgradeSlot slot)
+        private SlotElement GetSlot(UpgradeSlot slot)
         {
-            return (slots.Where(s => s.slot == slot).Select(s => s.parent)).FirstOrDefault();
+            return slots.FirstOrDefault(s => s.slot == slot);
         }
 
         public IUpgradeHandler GetHandler(Upgrade upgrade)
@@ -51,5 +51,6 @@ namespace Upgrades
     {
         public UpgradeSlot slot;
         public RectTransform parent;
+        public GameObject prefab;
     }
 }

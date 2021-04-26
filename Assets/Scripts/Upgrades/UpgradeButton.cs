@@ -16,7 +16,7 @@ namespace Upgrades
         public TextMeshProUGUI price;
         public Sprite warningSprite;
 
-        private int _level;
+        protected int _level;
 
         public void Start()
         {
@@ -53,12 +53,12 @@ namespace Upgrades
             store.GetHandler(upgrade)?.Handle(upgrade, _level, store);
         }
 
-        private int GetPrice()
+        protected int GetPrice()
         {
             return Mathf.FloorToInt(upgrade.price + _level * upgrade.priceMultiplicator);
         }
 
-        private void RerenderUi()
+        protected virtual void RerenderUi()
         {
             label.text = $"{upgrade.label} <size=16>(Level {_level}/{upgrade.maxLevels})</size>";
             description.text = upgrade.description;

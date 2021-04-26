@@ -13,12 +13,10 @@ MonoBehaviour:
   m_Name: SideDrillLeft
   m_EditorClassIdentifier: 
   id: side_drill_left
-  label: Left side drill {num}
-  level0Label: Left side drill
-  description: Upgrade the left side drill to level {num}
-  level0Description: Adds a side drill to the left side
+  label: Left side drill
+  description: Attach an additional drill to the left side
   price: 10
   maxLevels: 4
   priceMultiplicator: 1.5
-  slot: 3
+  slot: 1
   startLevel: 0
