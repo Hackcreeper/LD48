@@ -74,10 +74,10 @@ namespace Level
                 {
                     var tile = backgroundTiles[tx, ty];
 
-                    vertices.Add(new Vector3(tx, ty, 0));
-                    vertices.Add(new Vector3(tx + 1, ty, 0));
                     vertices.Add(new Vector3(tx + 1, ty - 1, 0));
                     vertices.Add(new Vector3(tx, ty - 1, 0));
+                    vertices.Add(new Vector3(tx, ty, 0));
+                    vertices.Add(new Vector3(tx + 1, ty, 0));
 
                     triangles.Add(squares * 4 + 0);
                     triangles.Add(squares * 4 + 1);

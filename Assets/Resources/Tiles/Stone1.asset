@@ -18,7 +18,7 @@ MonoBehaviour:
   restoreEnergy: 0
   score: 2
   money: 0
-  mapX: 0.46875
-  mapY: 0.625
+  mapX: 0.15625
+  mapY: 0.15625
   mapWidth: 0.125
-  mapHeight: 0.25
+  mapHeight: 0.125

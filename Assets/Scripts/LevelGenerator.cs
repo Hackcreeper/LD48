@@ -49,6 +49,11 @@ public class LevelGenerator : MonoBehaviour
 
     private void GenerateChunk(int chunkX, int chunkY)
     {
+        if (chunkY > 0)
+        {
+            return;
+        }
+        
         generator.GenerateChunk(chunkX, chunkY);
     }
 
