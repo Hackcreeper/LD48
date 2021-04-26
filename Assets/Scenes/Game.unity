@@ -1096,6 +1096,7 @@ MonoBehaviour:
   - {fileID: 948578976}
   - {fileID: 1167572208}
   - {fileID: 1768807882}
+  player: {fileID: 137205701}
   rotationSpeed: 900
 --- !u!114 &137205698
 MonoBehaviour:
