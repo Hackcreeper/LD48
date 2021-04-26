@@ -68,7 +68,7 @@ namespace Player
             if (lavaTimer > 0f)
             {
                 lavaTimer -= Time.deltaTime;
-                _heat += lavaStrength;
+                _heat += lavaStrength * Time.deltaTime;
             }
             
             CalculateAngle();
