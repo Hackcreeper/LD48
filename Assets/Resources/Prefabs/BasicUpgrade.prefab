@@ -558,6 +558,7 @@ MonoBehaviour:
   description: {fileID: 682554639475319376}
   price: {fileID: 682554639493731392}
   warningSprite: {fileID: 21300000, guid: 6ae54aba27dfd4c5090f115711b6fe7b, type: 3}
+  iconImage: {fileID: 2475223816298278674}
 --- !u!1 &4580857719239269975
 GameObject:
   m_ObjectHideFlags: 0

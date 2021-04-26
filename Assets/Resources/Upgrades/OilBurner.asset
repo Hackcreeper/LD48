@@ -21,3 +21,6 @@ MonoBehaviour:
   slot: 0
   startLevel: 0
   removeAfterBuy: 1
+  icons:
+  - {fileID: 21300000, guid: 915900d89528841bdabbe6dc90bf1738, type: 3}
+  - {fileID: 21300000, guid: 915900d89528841bdabbe6dc90bf1738, type: 3}

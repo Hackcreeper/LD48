@@ -14,6 +14,6 @@ namespace Upgrades
         public UpgradeSlot slot;
         public int startLevel;
         public bool removeAfterBuy;
-        public Sprite icon;
+        public Sprite[] icons;
     }
 }

@@ -20,3 +20,10 @@ MonoBehaviour:
   priceMultiplicator: 1.5
   slot: 1
   startLevel: 0
+  removeAfterBuy: 0
+  icons:
+  - {fileID: 21300000, guid: d496ff1bb51fed74ab921b7d6bc311b4, type: 3}
+  - {fileID: 21300000, guid: 5da2a7800ff4c9a4c9785e0bc1880858, type: 3}
+  - {fileID: 21300000, guid: 6841deba98168bd40a627330b0726ddb, type: 3}
+  - {fileID: 21300000, guid: 79bcc8c032f9deb4d8256799629b71df, type: 3}
+  - {fileID: 21300000, guid: 79bcc8c032f9deb4d8256799629b71df, type: 3}

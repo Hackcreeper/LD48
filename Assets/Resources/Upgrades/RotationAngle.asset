@@ -16,7 +16,14 @@ MonoBehaviour:
   label: Rotation angle
   description: Increase the angle in which the drill can rotate
   price: 10
-  unlocks: []
   maxLevels: 4
   priceMultiplicator: 1.5
   slot: 0
+  startLevel: 0
+  removeAfterBuy: 0
+  icons:
+  - {fileID: 21300000, guid: 808d5666245904663b2b675a920c6588, type: 3}
+  - {fileID: 21300000, guid: 808d5666245904663b2b675a920c6588, type: 3}
+  - {fileID: 21300000, guid: 808d5666245904663b2b675a920c6588, type: 3}
+  - {fileID: 21300000, guid: 808d5666245904663b2b675a920c6588, type: 3}
+  - {fileID: 21300000, guid: 808d5666245904663b2b675a920c6588, type: 3}

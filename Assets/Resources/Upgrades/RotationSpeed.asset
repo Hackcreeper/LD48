@@ -16,7 +16,14 @@ MonoBehaviour:
   label: Rotation speed
   description: Increase the speed in which the drill can rotate
   price: 10
-  unlocks: []
   maxLevels: 4
   priceMultiplicator: 1.5
   slot: 0
+  startLevel: 0
+  removeAfterBuy: 0
+  icons:
+  - {fileID: 21300000, guid: 8187c51e0c226484d88e4c015a9e6c03, type: 3}
+  - {fileID: 21300000, guid: 8187c51e0c226484d88e4c015a9e6c03, type: 3}
+  - {fileID: 21300000, guid: 8187c51e0c226484d88e4c015a9e6c03, type: 3}
+  - {fileID: 21300000, guid: 8187c51e0c226484d88e4c015a9e6c03, type: 3}
+  - {fileID: 21300000, guid: 8187c51e0c226484d88e4c015a9e6c03, type: 3}
