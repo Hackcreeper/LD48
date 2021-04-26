@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a8a28ed53d14cb49c698fe0ac9de112, type: 3}
-  m_Name: Ruby
+  m_Name: Gras
   m_EditorClassIdentifier: 
-  texture: {fileID: 2800000, guid: da7f45837bff84f45b4f59ec78d806ef, type: 3}
-  isOre: 1
+  texture: {fileID: 2800000, guid: e2fce40c619b84376bd9904b21529e1a, type: 3}
+  isOre: 0
   isBackground: 0
   restoreEnergy: 0
-  score: 5
-  money: 10
+  score: 0
+  money: 0
   mapX: 0.15625
-  mapY: 0
+  mapY: 0.625
   mapWidth: 0.125
   mapHeight: 0.125

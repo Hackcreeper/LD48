@@ -61,7 +61,7 @@ namespace Upgrades
 
         protected int GetPrice()
         {
-            return Mathf.FloorToInt(upgrade.price * (_level * upgrade.priceMultiplicator));
+            return _level == 0 ? upgrade.price : Mathf.FloorToInt(upgrade.price * (_level * upgrade.priceMultiplicator));
         }
 
         protected virtual void RerenderUi()
