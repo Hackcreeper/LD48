@@ -10,6 +10,7 @@ namespace Level
     {
         public BackgroundType[] baseTiles;
         public LayerTile[] oreTiles;
+        public FluidTile[] fluids;
         public int startY;
 
         public float noiseScale = 10f;
@@ -87,5 +88,14 @@ namespace Level
     {
         public TileDefinition tile;
         public int chance;
+    }
+    
+    [Serializable]
+    public struct FluidTile
+    {
+        public FluidDefinition fluid;
+        public int chance;
+        public int minSize;
+        public int maxSize;
     }
 }

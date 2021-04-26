@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18da212251034af3b1ccd1f49e1e4571, type: 3}
+  m_Name: Water
+  m_EditorClassIdentifier: 
+  topLeftEdgeTexture: {fileID: 2800000, guid: 85a7539c0664b495194feb7d048d1f80, type: 3}
+  topRightEdgeTexture: {fileID: 2800000, guid: bb91e2c93c35242629386e39669d983e, type: 3}
+  bottomLeftEdgeTexture: {fileID: 2800000, guid: 442bb3a9cdd204e1eb021422db948e4e, type: 3}
+  bottomRightEdgeTexture: {fileID: 2800000, guid: 2de1c87ff4c474f62817c9850cc4263f, type: 3}
+  fullTextures:
+  - {fileID: 2800000, guid: cd77640aea9304504a2634eeacbb73e3, type: 3}
+  - {fileID: 2800000, guid: 8a1b58e03e2604e3bb243d5ad1c142cd, type: 3}
+  - {fileID: 2800000, guid: 2984c30276f0e443e8f6decb7ad287c2, type: 3}
+  mapXTopLeft: 0
+  mapYTopLeft: 0
+  mapXTopRight: 0
+  mapYTopRight: 0
+  mapXBottomLeft: 0
+  mapYBottomLeft: 0
+  mapXBottomRight: 0
+  mapYBottomRight: 0
+  mapXFull: []
+  mapYFull: []
+  mapWidth: 0
+  mapHeight: 0

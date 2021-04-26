@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18da212251034af3b1ccd1f49e1e4571, type: 3}
+  m_Name: Lava
+  m_EditorClassIdentifier: 
+  topLeftEdgeTexture: {fileID: 2800000, guid: 6b8405f630c0b473bb40cb2cdecc7d29, type: 3}
+  topRightEdgeTexture: {fileID: 2800000, guid: 434decd65c72740079c090c2487746fa, type: 3}
+  bottomLeftEdgeTexture: {fileID: 2800000, guid: 166913f833d2c4515b74a8169b7d377b, type: 3}
+  bottomRightEdgeTexture: {fileID: 2800000, guid: 23f58cff504b44455849e0b0bb4e65ee, type: 3}
+  fullTextures:
+  - {fileID: 2800000, guid: ea75cf162a20f4d8e92de7c14921d2ba, type: 3}
+  - {fileID: 2800000, guid: ae7b3146d739f47e7841ba4aeb350a50, type: 3}
+  - {fileID: 2800000, guid: c365ff423c33f4c3b9a42e013e66c7ca, type: 3}
+  - {fileID: 2800000, guid: 44c78a135b03a4efcacc9e3b21b764df, type: 3}
+  - {fileID: 2800000, guid: 7974e11587b46413b964a3250b365cb6, type: 3}
+  - {fileID: 2800000, guid: 96bfb94e6aae441ac9a47dc721d51771, type: 3}
+  mapXTopLeft: 0
+  mapYTopLeft: 0
+  mapXTopRight: 0
+  mapYTopRight: 0
+  mapXBottomLeft: 0
+  mapYBottomLeft: 0
+  mapXBottomRight: 0
+  mapYBottomRight: 0
+  mapXFull: []
+  mapYFull: []
+  mapWidth: 0
+  mapHeight: 0
