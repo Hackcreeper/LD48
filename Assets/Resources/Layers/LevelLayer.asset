@@ -12,8 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93a768b1ef5fc466fbc049c4146a6970, type: 3}
   m_Name: LevelLayer
   m_EditorClassIdentifier: 
-  baseTiles: []
-  oreTiles: []
+  baseTiles:
+  - tiles:
+    - tile: {fileID: 11400000, guid: 8451d355da1c0492ba7e27f7e69460ae, type: 2}
+      chance: 0
+    - tile: {fileID: 11400000, guid: 0bdfe7d20a8a54d0ca30500ee110b4a8, type: 2}
+      chance: 0
+    minNoise: 0
+  - tiles:
+    - tile: {fileID: 11400000, guid: 8451d355da1c0492ba7e27f7e69460ae, type: 2}
+      chance: 0
+    - tile: {fileID: 11400000, guid: 0bdfe7d20a8a54d0ca30500ee110b4a8, type: 2}
+      chance: 0
+    minNoise: 0.2
+  oreTiles:
+  - tile: {fileID: 11400000, guid: 87610028c4e864a5abcdb38eac0b4c52, type: 2}
+    chance: 10
+  - tile: {fileID: 11400000, guid: 87610028c4e864a5abcdb38eac0b4c52, type: 2}
+    chance: 10
   fluids: []
   startY: 0
   noiseScale: 10

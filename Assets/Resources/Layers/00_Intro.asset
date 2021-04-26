@@ -46,3 +46,5 @@ MonoBehaviour:
   startY: 0
   noiseScale: 20
   oreThreshold: 1
+  tntThreshold: 0.1
+  maxTnt: 1
