@@ -75,6 +75,19 @@ public class LevelGenerator : MonoBehaviour
             : null;
     }
 
+    public FluidDefinition GetFluidAt(int x, int y)
+    {
+        var chunkX = GetChunkByCoordinate(x);
+        var chunkY = GetChunkByCoordinate(y);
+
+        var withinX = Mathf.FloorToInt((x - (chunkX * chunkSize)) / (float)oreSize);
+        var withinY = Mathf.FloorToInt((y - (chunkY * chunkSize)) / (float)oreSize);
+
+        return chunks.ContainsKey(chunkX + "_" + chunkY)
+            ? chunks[chunkX + "_" + chunkY].fluidTiles[withinX, withinY]
+            : null;
+    }
+
     public int DestroyTile(int x, int y)
     {
         var chunkX = GetChunkByCoordinate(x);

@@ -42,6 +42,19 @@ MonoBehaviour:
     chance: 10
   - tile: {fileID: 11400000, guid: 5ef345c75b094448a8454b0d3475cfc8, type: 2}
     chance: 3
+  fluids:
+  - fluid: {fileID: 11400000, guid: 62ad915e0c64d491e817f1f108c08ba7, type: 2}
+    chance: 50
+    minSize: 3
+    maxSize: 5
+  - fluid: {fileID: 11400000, guid: c4e2476dd6aab41c69b3aa70d5758f36, type: 2}
+    chance: 50
+    minSize: 3
+    maxSize: 8
+  - fluid: {fileID: 11400000, guid: f708e3396041e4780b8c438bde4aa6da, type: 2}
+    chance: 50
+    minSize: 2
+    maxSize: 6
   startY: 5
   noiseScale: 10
   oreThreshold: 0.75

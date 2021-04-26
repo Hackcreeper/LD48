@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18da212251034af3b1ccd1f49e1e4571, type: 3}
+  m_Name: Oil
+  m_EditorClassIdentifier: 
+  topLeftEdgeTexture: {fileID: 2800000, guid: 032674388ba844631b0d5ccb410745b7, type: 3}
+  topRightEdgeTexture: {fileID: 2800000, guid: 69452c2c30eb94cf09f5115b6fd5db12, type: 3}
+  bottomLeftEdgeTexture: {fileID: 2800000, guid: 654162cd7e9784fc6a348326132df29c, type: 3}
+  bottomRightEdgeTexture: {fileID: 2800000, guid: 58a23e2f082ec439a96e127f9a0b2853, type: 3}
+  fullTextures:
+  - {fileID: 2800000, guid: 3b93822ae7fa94d1286b58acf1bcd345, type: 3}
+  - {fileID: 2800000, guid: b52ec72aa0fee4ed7b55a3b6f82d6e39, type: 3}
+  - {fileID: 2800000, guid: 02ed94afec2844e25a319afadb81d695, type: 3}
+  - {fileID: 2800000, guid: b3526fd8b2fab4fddb00071576dcf97d, type: 3}
+  - {fileID: 2800000, guid: 03b7e9bffd1b54207a12f6a97d9adf3d, type: 3}
+  mapXTopLeft: 0
+  mapYTopLeft: 0
+  mapXTopRight: 0
+  mapYTopRight: 0
+  mapXBottomLeft: 0
+  mapYBottomLeft: 0
+  mapXBottomRight: 0
+  mapYBottomRight: 0
+  mapXFull: []
+  mapYFull: []
+  mapWidth: 0
+  mapHeight: 0
