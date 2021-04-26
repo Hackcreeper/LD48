@@ -16,7 +16,8 @@ MonoBehaviour:
   label: Oil burner
   description: Allows to convert oil into energy
   price: 10
-  unlocks: []
   maxLevels: 1
   priceMultiplicator: 1.5
-  slot: 2
+  slot: 0
+  startLevel: 0
+  removeAfterBuy: 1

@@ -18,14 +18,14 @@ namespace Upgrades
         private bool _open;
 
         private readonly IUpgradeHandler[] _handlers = {
-            new StrengthUpgradeHandler(),
             new RotationAngleUpgradeHandler(),
             new RotationSpeedUpgradeHandler(),
             new HeatShieldUpgradeHandler(),
             new DrillLevelUpgradeHandler(),
             new BigDrillUpgradeHandler(),
             new SideDrillLeftUpgradeHandler(),
-            new SideDrillRightUpgradeHandler()
+            new SideDrillRightUpgradeHandler(),
+            new OilBurnerUpgradeHandler()
         };
         
         private void Start()

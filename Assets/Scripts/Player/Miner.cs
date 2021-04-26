@@ -34,6 +34,9 @@ namespace Player
         public GameObject sideArmsRightLevel4;
         public GameObject checkSideRight;
 
+        public GameObject oilTank;
+        public bool hasOilTank;
+
         private void Update()
         {
             CheckChildren(GetParent());
@@ -129,6 +132,12 @@ namespace Player
             }
 
             return pointList;
+        }
+
+        public void AddOilTank()
+        {
+            oilTank.SetActive(true);
+            hasOilTank = true;
         }
     }
 }

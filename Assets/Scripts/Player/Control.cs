@@ -35,6 +35,7 @@ namespace Player
         public GameObject level3Body;
         public GameObject level4Body;
         public int drillLevel = 1;
+        public float lavaTimer;
 
         private float _angle;
         private float _realAngle;
@@ -62,9 +63,15 @@ namespace Player
                 return;
             }
 
+            if (lavaTimer > 0f)
+            {
+                lavaTimer -= Time.deltaTime;
+                _heat += 1f;
+            }
+            
             CalculateAngle();
 
-            _realSpeed = speed - (heatSpeedModificator * _heat);
+            _realSpeed = speed * 1 - (heatSpeedModificator * _heat);
             
             transform.Translate(0, -_realSpeed * Time.deltaTime, 0);
 
@@ -233,6 +240,11 @@ namespace Player
         public void RemoveMoney(int remove)
         {
             _money = Mathf.Clamp(_money - remove, 0, int.MaxValue);
+        }
+
+        public void SetHeat(int heat)
+        {
+            _heat = heat;
         }
     }
 }
