@@ -24,7 +24,8 @@ namespace Upgrades
             new DrillLevelUpgradeHandler(),
             new BigDrillUpgradeHandler(),
             new SideDrillLeftUpgradeHandler(),
-            new SideDrillRightUpgradeHandler()
+            new SideDrillRightUpgradeHandler(),
+            new OilBurnerUpgradeHandler()
         };
         
         private void Start()

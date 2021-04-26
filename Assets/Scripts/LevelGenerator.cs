@@ -33,10 +33,14 @@ public class LevelGenerator : MonoBehaviour
         GenerateChunk(chunkX, chunkY);
         GenerateChunk(chunkX - 1, chunkY);
         GenerateChunk(chunkX + 1, chunkY);
+        GenerateChunk(chunkX - 2, chunkY);
+        GenerateChunk(chunkX + 2, chunkY);
 
         GenerateChunk(chunkX, chunkY - 1);
         GenerateChunk(chunkX - 1, chunkY - 1);
         GenerateChunk(chunkX + 1, chunkY - 1);
+        GenerateChunk(chunkX - 2, chunkY - 1);
+        GenerateChunk(chunkX + 2, chunkY - 1);
     }
 
     private void GenerateChunk(int chunkX, int chunkY)
