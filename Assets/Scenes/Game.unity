@@ -3715,8 +3715,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bfab9cedbead44c23a8c478f11284dd4, type: 2}
   - {fileID: 11400000, guid: 2e5bf6583c5c947e482a96029d3d5b4b, type: 2}
   - {fileID: 11400000, guid: d9971876dd3744087b3a51ea5dce2f86, type: 2}
-  - {fileID: 11400000, guid: 07e9444bcde894bd89ce960975de4dc9, type: 2}
-  - {fileID: 11400000, guid: 8d5a359ccabf84aaea8e5a57afae75d9, type: 2}
   backgroundTile: {fileID: 11400000, guid: dda3ff5e5a80349adb86082089e7cdb0, type: 2}
   generator: {fileID: 1159244381}
   chunkSize: 36
@@ -3762,6 +3760,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8201f48adef5e4dd8919788bdcdee055, type: 2}
   - {fileID: 11400000, guid: b01b3dfade230496db85ce58a86eae2d, type: 2}
   - {fileID: 11400000, guid: 3b97ab54d32f54b02baf862d9d851b20, type: 2}
+  - {fileID: 11400000, guid: f5eb1c352efb54b09a5e20ce60cc4a6e, type: 2}
+  - {fileID: 11400000, guid: 87610028c4e864a5abcdb38eac0b4c52, type: 2}
+  - {fileID: 11400000, guid: 6f7f774481af047a38285d942522ff82, type: 2}
+  - {fileID: 11400000, guid: f5a3e954ff35c4c5f85635a8831152cd, type: 2}
 --- !u!114 &1159244381
 MonoBehaviour:
   m_ObjectHideFlags: 0

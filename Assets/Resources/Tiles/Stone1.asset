@@ -15,7 +15,10 @@ MonoBehaviour:
   texture: {fileID: 2800000, guid: ede13ef00f34240a785d9604750caa20, type: 3}
   isOre: 0
   isBackground: 0
-  mapX: 0.625
-  mapY: 0.46875
-  mapWidth: 0.25
-  mapHeight: 0.125
+  restoreEnergy: 0
+  score: 0
+  money: 0
+  mapX: 0.46875
+  mapY: 0.625
+  mapWidth: 0.125
+  mapHeight: 0.25

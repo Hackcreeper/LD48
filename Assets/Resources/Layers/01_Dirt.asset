@@ -31,9 +31,9 @@ MonoBehaviour:
     minNoise: 0
   oreTiles:
   - tile: {fileID: 11400000, guid: 8ad63e5edfd4f42c7a6bf60e48f4ae32, type: 2}
-    chance: 9
+    chance: 10
   - tile: {fileID: 11400000, guid: 5ef345c75b094448a8454b0d3475cfc8, type: 2}
-    chance: 100
+    chance: 1
   startY: 1
-  noiseScale: 20
-  oreThreshold: 0.7
+  noiseScale: 10
+  oreThreshold: 0.75

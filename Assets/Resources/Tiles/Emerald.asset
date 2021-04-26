@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a8a28ed53d14cb49c698fe0ac9de112, type: 3}
-  m_Name: BackgroundDirt
+  m_Name: Emerald
   m_EditorClassIdentifier: 
-  texture: {fileID: 2800000, guid: 2694b7dd0e3dd4d8b84234082c06ab8d, type: 3}
-  isOre: 0
-  isBackground: 1
+  texture: {fileID: 2800000, guid: 19bd58ccdaa654bff8b34997f2c625d6, type: 3}
+  isOre: 1
+  isBackground: 0
   restoreEnergy: 0
-  score: 0
-  money: 0
-  mapX: 0
+  score: 40
+  money: 80
+  mapX: 0.625
   mapY: 0.625
   mapWidth: 0.125
   mapHeight: 0.25

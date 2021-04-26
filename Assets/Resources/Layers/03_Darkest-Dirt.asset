@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 93a768b1ef5fc466fbc049c4146a6970, type: 3}
-  m_Name: 02_Dirt-Stone
+  m_Name: 03_Darkest-Dirt
   m_EditorClassIdentifier: 
   baseTiles:
   - tiles:
@@ -36,12 +36,20 @@ MonoBehaviour:
       chance: 10
     - tile: {fileID: 11400000, guid: 3b97ab54d32f54b02baf862d9d851b20, type: 2}
       chance: 10
-    minNoise: 0.6
+    minNoise: 0.5
   oreTiles:
   - tile: {fileID: 11400000, guid: 8ad63e5edfd4f42c7a6bf60e48f4ae32, type: 2}
-    chance: 9
+    chance: 10
   - tile: {fileID: 11400000, guid: 5ef345c75b094448a8454b0d3475cfc8, type: 2}
-    chance: 2
-  startY: 5
-  noiseScale: 15
-  oreThreshold: 0.65
+    chance: 10
+  - tile: {fileID: 11400000, guid: f5eb1c352efb54b09a5e20ce60cc4a6e, type: 2}
+    chance: 1
+  - tile: {fileID: 11400000, guid: 87610028c4e864a5abcdb38eac0b4c52, type: 2}
+    chance: 1
+  - tile: {fileID: 11400000, guid: 6f7f774481af047a38285d942522ff82, type: 2}
+    chance: 1
+  - tile: {fileID: 11400000, guid: f5a3e954ff35c4c5f85635a8831152cd, type: 2}
+    chance: 1
+  startY: 10
+  noiseScale: 25
+  oreThreshold: 0.6
