@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a8a28ed53d14cb49c698fe0ac9de112, type: 3}
+  m_Name: Dirt1
+  m_EditorClassIdentifier: 
+  texture: {fileID: 2800000, guid: a78fff5ad504f4663a29c4897d2cb02a, type: 3}
+  isOre: 0
+  isBackground: 0
+  restoreEnergy: 0
+  score: 0
+  money: 0
+  mapX: 0.15625
+  mapY: 0
+  mapWidth: 0.125
+  mapHeight: 0.25
