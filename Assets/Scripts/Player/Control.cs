@@ -170,7 +170,7 @@ namespace Player
             _rankTimer -= Time.deltaTime;
             if (_rankTimer <= 0f)
             {
-                Scores.GetRank(score, 618313, (int rank) => { _rank = rank; });
+                Scores.GetRank(score, 618785, (int rank) => { _rank = rank; });
                 _rankTimer = 5f;
             }
 
@@ -215,7 +215,7 @@ namespace Player
                 Scores.Add(
                     score,
                     score.ToString(),
-                    618313,
+                    618785,
                     null,
                     (bool success) => { GameJoltUI.Instance.ShowLeaderboards(_ => { GuestGameOver.Restart(); }); }
                 );
