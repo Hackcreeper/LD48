@@ -98,6 +98,11 @@ namespace Upgrades
             Close();
             _closedForever = true;
         }
+
+        public void Reopen()
+        {
+            _closedForever = false;
+        }
     }
 
     [Serializable]
