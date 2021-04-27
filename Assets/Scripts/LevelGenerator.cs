@@ -111,24 +111,24 @@ public class LevelGenerator : MonoBehaviour
             return 0;
         }
 
-        var removed = RemoveBackground(chunkX, chunkY, x, y);
+        var bgScore = RemoveBackground(chunkX, chunkY, x, y);
         var score = RemoveOre(chunkX, chunkY, x, y, playerAction);
         var removedFluid = RemoveFluid(chunkX, chunkY, x, y, playerAction);
 
-        if (removed || removedFluid || score > 0)
+        if (bgScore > 0 || removedFluid || score > 0)
         {
             chunks[chunkX + "_" + chunkY].changed = true;
         }
 
-        return score;
+        return score + bgScore;
     }
 
-    private bool RemoveBackground(int chunkX, int chunkY, int x, int y)
+    private int RemoveBackground(int chunkX, int chunkY, int x, int y)
     {
         var tile = GetTileAt(x, y);
         if (!tile || tile.isBackground)
         {
-            return false;
+            return 0;
         }
 
         var withinX = x - (chunkX * chunkSize);
@@ -136,12 +136,7 @@ public class LevelGenerator : MonoBehaviour
 
         chunks[chunkX + "_" + chunkY].backgroundTiles[withinX, withinY] = backgroundTile;
 
-        if (tile.score > 0)
-        {
-            player.score += tile.score;
-        }
-        
-        return true;
+        return tile.score;
     }
 
     private int RemoveOre(int chunkX, int chunkY, int x, int y, bool playerAction)
