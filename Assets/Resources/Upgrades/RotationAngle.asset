@@ -17,7 +17,7 @@ MonoBehaviour:
   description: Increase the angle in which the drill can rotate
   price: 10
   maxLevels: 4
-  priceMultiplicator: 1.5
+  priceMultiplicator: 2
   slot: 0
   startLevel: 0
   removeAfterBuy: 0

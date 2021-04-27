@@ -15,7 +15,7 @@ MonoBehaviour:
   id: oil_burner
   label: Oil burner
   description: Allows to convert oil into energy
-  price: 10
+  price: 150
   maxLevels: 1
   priceMultiplicator: 1.5
   slot: 0

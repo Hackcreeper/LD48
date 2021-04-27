@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93a768b1ef5fc466fbc049c4146a6970, type: 3}
+  m_Name: 04_Lightest-Stone 1
+  m_EditorClassIdentifier: 
+  baseTiles:
+  - tiles:
+    - tile: {fileID: 11400000, guid: 8201f48adef5e4dd8919788bdcdee055, type: 2}
+      chance: 150
+    - tile: {fileID: 11400000, guid: 3b97ab54d32f54b02baf862d9d851b20, type: 2}
+      chance: 10
+    minNoise: 0
+  - tiles:
+    - tile: {fileID: 11400000, guid: 8201f48adef5e4dd8919788bdcdee055, type: 2}
+      chance: 150
+    - tile: {fileID: 11400000, guid: 0bdfe7d20a8a54d0ca30500ee110b4a8, type: 2}
+      chance: 10
+    - tile: {fileID: 11400000, guid: c19718370cfaf495ea88720328462a28, type: 2}
+      chance: 10
+    - tile: {fileID: 11400000, guid: 2efb47e3ff22b438688893d034e54583, type: 2}
+      chance: 10
+    - tile: {fileID: 11400000, guid: d4b736fb7245548caa431a74cd395622, type: 2}
+      chance: 1
+    - tile: {fileID: 11400000, guid: 817e353c5afa044da8a152d9e861fabb, type: 2}
+      chance: 10
+    - tile: {fileID: 11400000, guid: a791609c6508d4fc2aebcac0f5aef6c4, type: 2}
+      chance: 10
+    minNoise: 0.7
+  oreTiles:
+  - tile: {fileID: 11400000, guid: 8ad63e5edfd4f42c7a6bf60e48f4ae32, type: 2}
+    chance: 8
+  - tile: {fileID: 11400000, guid: 87610028c4e864a5abcdb38eac0b4c52, type: 2}
+    chance: 8
+  - tile: {fileID: 11400000, guid: f5eb1c352efb54b09a5e20ce60cc4a6e, type: 2}
+    chance: 6
+  - tile: {fileID: 11400000, guid: 6f7f774481af047a38285d942522ff82, type: 2}
+    chance: 4
+  fluids:
+  - fluid: {fileID: 11400000, guid: 62ad915e0c64d491e817f1f108c08ba7, type: 2}
+    chance: 10
+    minSize: 5
+    maxSize: 8
+  - fluid: {fileID: 11400000, guid: c4e2476dd6aab41c69b3aa70d5758f36, type: 2}
+    chance: 5
+    minSize: 3
+    maxSize: 7
+  - fluid: {fileID: 11400000, guid: f708e3396041e4780b8c438bde4aa6da, type: 2}
+    chance: 6
+    minSize: 4
+    maxSize: 9
+  startY: 27
+  noiseScale: 30
+  oreThreshold: 2
+  tntThreshold: 0.1
+  maxTnt: 2

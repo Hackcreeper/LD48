@@ -16,7 +16,7 @@ MonoBehaviour:
   isOre: 1
   isBackground: 0
   restoreEnergy: 0
-  score: 20
+  score: 200
   money: 40
   renderTransparent: 0
   mapX: 0.625

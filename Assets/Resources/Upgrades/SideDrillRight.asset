@@ -15,9 +15,9 @@ MonoBehaviour:
   id: side_drill_right
   label: Right side drill
   description: Attach an additional drill to the left side
-  price: 10
+  price: 35
   maxLevels: 4
-  priceMultiplicator: 1.5
+  priceMultiplicator: 2
   slot: 1
   startLevel: 0
   removeAfterBuy: 0
