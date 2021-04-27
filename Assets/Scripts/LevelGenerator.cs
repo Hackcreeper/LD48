@@ -135,6 +135,12 @@ public class LevelGenerator : MonoBehaviour
         var withinY = y - (chunkY * chunkSize);
 
         chunks[chunkX + "_" + chunkY].backgroundTiles[withinX, withinY] = backgroundTile;
+
+        if (tile.score > 0)
+        {
+            player.score += tile.score;
+        }
+        
         return true;
     }
 
