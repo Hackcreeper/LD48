@@ -2,6 +2,7 @@ using Level;
 using Player;
 using UnityEditorInternal;
 using UnityEngine;
+using Upgrades;
 
 namespace Ui
 {
@@ -18,6 +19,7 @@ namespace Ui
         public FadeInText[] fadeInTexts;
         public FadeInCanvas[] fadeInCanvases;
         public FadeLight[] fadeLights;
+        public UpgradeStore store;
         
         /**
          * 0 = Player moves right a few meters
@@ -84,6 +86,8 @@ namespace Ui
                     {
                         fadeLight.started = true;
                     }
+
+                    store.Reopen();
                     
                     introFinished = true;
                     started = false;
