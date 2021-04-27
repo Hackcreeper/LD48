@@ -63,6 +63,7 @@ namespace Level
         {
             var vertices = new List<Vector3>();
             var triangles = new List<int>();
+            var trianglesTransparent = new List<int>();
             var uvs = new List<Vector2>();
 
             var mesh = backgroundMesh.mesh;
@@ -79,12 +80,24 @@ namespace Level
                     vertices.Add(new Vector3(tx, ty, 0));
                     vertices.Add(new Vector3(tx + 1, ty, 0));
 
-                    triangles.Add(squares * 4 + 0);
-                    triangles.Add(squares * 4 + 1);
-                    triangles.Add(squares * 4 + 3);
-                    triangles.Add(squares * 4 + 1);
-                    triangles.Add(squares * 4 + 2);
-                    triangles.Add(squares * 4 + 3);
+                    if (tile.renderTransparent)
+                    {
+                        trianglesTransparent.Add(squares * 4 + 0);
+                        trianglesTransparent.Add(squares * 4 + 1);
+                        trianglesTransparent.Add(squares * 4 + 3);
+                        trianglesTransparent.Add(squares * 4 + 1);
+                        trianglesTransparent.Add(squares * 4 + 2);
+                        trianglesTransparent.Add(squares * 4 + 3);
+                    }
+                    else
+                    {
+                        triangles.Add(squares * 4 + 0);
+                        triangles.Add(squares * 4 + 1);
+                        triangles.Add(squares * 4 + 3);
+                        triangles.Add(squares * 4 + 1);
+                        triangles.Add(squares * 4 + 2);
+                        triangles.Add(squares * 4 + 3);   
+                    }
 
                     uvs.Add(new Vector2(tile.mapX, tile.mapY));
                     uvs.Add(new Vector2(tile.mapX + tile.mapWidth, tile.mapY));
@@ -96,9 +109,12 @@ namespace Level
             }
 
             mesh.Clear();
+            mesh.subMeshCount = 2;
             mesh.vertices = vertices.ToArray();
-            mesh.triangles = triangles.ToArray();
             mesh.uv = uvs.ToArray();
+
+            mesh.SetTriangles(triangles.ToArray(), 0);
+            mesh.SetTriangles(trianglesTransparent.ToArray(), 1);
             mesh.Optimize();
             mesh.RecalculateNormals();
         }

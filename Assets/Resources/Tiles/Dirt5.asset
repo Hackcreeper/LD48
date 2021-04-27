@@ -18,6 +18,7 @@ MonoBehaviour:
   restoreEnergy: 0
   score: 0
   money: 0
+  renderTransparent: 0
   mapX: 0
   mapY: 0.3125
   mapWidth: 0.125

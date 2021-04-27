@@ -39,6 +39,7 @@ namespace Player
         public float lavaTimer;
         public UpgradeStore store;
         public float lavaStrength = 1f;
+        public MainMenu mainMenu;
 
         private float _angle;
         private bool _pressingLeft;
@@ -60,7 +61,7 @@ namespace Player
 
         private void Update()
         {
-            if (_dead)
+            if (_dead || mainMenu.introRunning)
             {
                 return;
             }
