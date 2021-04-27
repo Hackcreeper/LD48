@@ -1,3 +1,4 @@
+using System.Data.SqlTypes;
 using GameJolt.API;
 using GameJolt.UI;
 using TMPro;
@@ -39,6 +40,7 @@ namespace Player
         public float lavaTimer;
         public UpgradeStore store;
         public float lavaStrength = 1f;
+        public MainMenu mainMenu;
 
         private float _angle;
         private bool _pressingLeft;
@@ -60,7 +62,7 @@ namespace Player
 
         private void Update()
         {
-            if (_dead)
+            if (_dead || mainMenu.introRunning)
             {
                 return;
             }
@@ -100,12 +102,23 @@ namespace Player
             // base is 0.451
             if (_heat >= 70)
             {
-                _vignette.intensity.value = 0.451f + 0.549f / 30 * (_heat - 70);
+                _vignette.intensity.value = Mathf.Lerp(
+                    _vignette.intensity.value,
+                    0.451f + 0.549f / 30 * (_heat - 70),
+                    20f * Time.deltaTime
+                );
+                
+                // _vignette.intensity.value = 0.451f + 0.549f / 30 * (_heat - 70);
                 _vignette.color.value = Color.red;
             }
             else
             {
-                _vignette.intensity.value = 0.451f;
+                _vignette.intensity.value = Mathf.Lerp(
+                    _vignette.intensity.value,
+                    0.451f,
+                    20f * Time.deltaTime
+                );
+                
                 _vignette.color.value = Color.black;
             }
 

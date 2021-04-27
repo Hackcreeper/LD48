@@ -11,6 +11,7 @@ namespace Level
         public float restoreEnergy;
         public int score;
         public int money;
+        public bool renderTransparent;
 
         public float mapX;
         public float mapY;

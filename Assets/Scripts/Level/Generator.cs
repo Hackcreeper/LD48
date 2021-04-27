@@ -122,6 +122,11 @@ namespace Level
                     {
                         continue;
                     }
+
+                    if (chunk.fluidTiles[x, y] != null)
+                    {
+                        continue;
+                    }
                     
                     tnts.Add(new Coords {x = x, y = y});
                     chunk.oreTiles[x, y] = null;

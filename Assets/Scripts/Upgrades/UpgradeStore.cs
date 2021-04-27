@@ -17,7 +17,7 @@ namespace Upgrades
         public GameObject[] hideWhenOpen;
 
         private bool _open;
-        private bool _closedForever;
+        private bool _closedForever = true;
 
         private readonly IUpgradeHandler[] _handlers = {
             new RotationAngleUpgradeHandler(),

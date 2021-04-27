@@ -39,6 +39,11 @@ namespace Player
 
         private void Update()
         {
+            if (player.mainMenu.introRunning)
+            {
+                return;
+            }
+            
             CheckChildren(GetParent());
 
             if (sideArmLeftLevel > 0)

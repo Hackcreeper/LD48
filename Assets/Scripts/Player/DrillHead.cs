@@ -13,6 +13,11 @@ namespace Player
 
         private void Update()
         {
+            if (player.mainMenu.introRunning)
+            {
+                return;
+            }
+            
             foreach (var target in targets)
             {
                 target.Rotate(new Vector3(
