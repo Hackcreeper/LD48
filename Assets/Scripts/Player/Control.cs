@@ -52,6 +52,7 @@ namespace Player
         private float _heat;
         private Vignette _vignette;
         private float _realSpeed;
+        private float _rankTimer;
 
         private void Awake()
         {
@@ -166,7 +167,12 @@ namespace Player
                 return;
             }
 
-            Scores.GetRank(score, 618313, (int rank) => { _rank = rank; });
+            _rankTimer -= Time.deltaTime;
+            if (_rankTimer <= 0f)
+            {
+                Scores.GetRank(score, 618313, (int rank) => { _rank = rank; });
+                _rankTimer = 5f;
+            }
 
             rankLabel.text = $"Rank {_rank}";
 
