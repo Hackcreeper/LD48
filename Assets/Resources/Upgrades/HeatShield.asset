@@ -15,7 +15,7 @@ MonoBehaviour:
   id: heat_shield
   label: Heat shield
   description: Increases your heat resistance
-  price: 10
+  price: 15
   maxLevels: 4
   priceMultiplicator: 1.5
   slot: 0

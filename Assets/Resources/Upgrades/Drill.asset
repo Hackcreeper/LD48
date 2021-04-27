@@ -15,9 +15,9 @@ MonoBehaviour:
   id: drill_level
   label: Drill
   description: Upgrade the strength and speed of your drill
-  price: 10
+  price: 20
   maxLevels: 4
-  priceMultiplicator: 0
+  priceMultiplicator: 3.5
   slot: 1
   startLevel: 1
   removeAfterBuy: 0

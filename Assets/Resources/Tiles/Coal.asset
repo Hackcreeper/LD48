@@ -16,7 +16,7 @@ MonoBehaviour:
   isOre: 1
   isBackground: 0
   restoreEnergy: 5
-  score: 1
+  score: 10
   money: 0
   mapX: 0
   mapY: 0

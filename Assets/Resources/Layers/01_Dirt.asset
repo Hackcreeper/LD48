@@ -44,7 +44,7 @@ MonoBehaviour:
     minSize: 3
     maxSize: 8
   startY: 1
-  noiseScale: 10
+  noiseScale: 7
   oreThreshold: 0.7
   tntThreshold: 0.1
   maxTnt: 0
